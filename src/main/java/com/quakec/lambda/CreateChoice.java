@@ -1,4 +1,4 @@
-package com.amazonaws.lambda.demo;
+package com.quakec.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -8,14 +8,14 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 
-public class LambdaFunctionHandler implements RequestHandler<S3Event, String> {
+public class CreateChoice implements RequestHandler<S3Event, String> {
 
     private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
-    public LambdaFunctionHandler() {}
+    public CreateChoice() {}
 
     // Test purpose only.
-    LambdaFunctionHandler(AmazonS3 s3) {
+    CreateChoice(AmazonS3 s3) {
         this.s3 = s3;
     }
 
