@@ -8,14 +8,14 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 
-public class RegisterUser implements RequestHandler<S3Event, String> {
+public class RegisterMember implements RequestHandler<S3Event, String> {
 
     private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
-    public RegisterUser() {}
+    public RegisterMember() {}
 
     // Test purpose only.
-    RegisterUser(AmazonS3 s3) {
+    RegisterMember(AmazonS3 s3) {
         this.s3 = s3;
     }
 
