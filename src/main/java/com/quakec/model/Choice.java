@@ -8,7 +8,7 @@ public class Choice {
 	public final String name;
 	public final String description;
 	public final Date datetime;
-	public final int memberCount;
+	public int memberCount;
 	public boolean hasChosenAlternative;
 	public final String id;
 	
@@ -20,6 +20,7 @@ public class Choice {
 		this.hasChosenAlternative = false;
 		this.id = UUID.fromString("choice:"+name+datetime.toString()).toString(); 
 	}
+	
 	
 	public Choice(String n, String description, Date datetime, int m, boolean h, String i) {
 		this.name = n;
@@ -38,6 +39,7 @@ public class Choice {
 	
 	public String getDescription() {return description;}
 	
+	public void setMemberCount(int m) { memberCount = m; }
 	public int getMemberCount() {return memberCount;}
 	
 	public Date getDatetime() {return datetime;}
