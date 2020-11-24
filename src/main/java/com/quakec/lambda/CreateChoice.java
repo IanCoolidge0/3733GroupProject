@@ -1,5 +1,7 @@
 package com.quakec.lambda;
 
+import java.util.List;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
@@ -30,7 +32,8 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
         CreateChoiceResponse response;
         
         try {
-        	if(createChoice(req.getTitle(), req.getDescription(), req.getAlternatives())) {
+        	
+        	if(createChoice(req.getTitle(), req.getDescription(), req.getAlternatives(), context)) {
         		response = new CreateChoiceResponse(201);
         	} else {
         		response = new CreateChoiceResponse(400);
@@ -42,7 +45,7 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
         return response;
     }
 
-	private boolean createChoice(String title, String description, String[] alternatives) throws Exception {
+	private boolean createChoice(String title, String description, List<String> alternatives, Context ctx) throws Exception {
 		ChoicesDAO choiceDAO = new ChoicesDAO();
 		AlternativesDAO altDAO = new AlternativesDAO();
 		ChoiceAlternativesDAO chAltDAO = new ChoiceAlternativesDAO();
@@ -50,10 +53,11 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
 		boolean success = true;
 		
 		Choice choice = new Choice(title, description, 0);
+		ctx.getLogger().log("about to create choice");
 		choiceDAO.createChoice(choice);
-		
-		for(int i = 0; i < alternatives.length; i++) {
-			String alternName = alternatives[i];
+		ctx.getLogger().log("just created choice");
+		for(int i = 0; i < alternatives.size(); i++) {
+			String alternName = alternatives.get(i);
 			
 			Alternative altern = new Alternative(alternName, i + 1);
 			altDAO.createAlternative(altern);

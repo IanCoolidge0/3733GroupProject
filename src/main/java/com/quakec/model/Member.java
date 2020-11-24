@@ -13,7 +13,7 @@ public class Member {
 	
 	public Member(String n, String p) {
 		this.name = n;
-		this.id = UUID.fromString("name:"+name).toString(); 
+		this.id = UUID.randomUUID().toString(); 
 		this.registered = false;
 		if(p.equals("")) {
 			this.hasPassword = false;
