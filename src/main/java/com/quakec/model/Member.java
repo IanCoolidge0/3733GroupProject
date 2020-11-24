@@ -1,10 +1,8 @@
 package com.quakec.model;
 
-import java.util.UUID;
 
 public class Member {
 	public final String name;
-	public final String id;
 	public final String password;
 	public final boolean hasPassword;
 	public boolean registered;
@@ -13,7 +11,6 @@ public class Member {
 	
 	public Member(String n, String p) {
 		this.name = n;
-		this.id = UUID.fromString("name:"+name).toString(); 
 		this.registered = false;
 		if(p.equals("")) {
 			this.hasPassword = false;
@@ -25,11 +22,19 @@ public class Member {
 		
 	}
 	
+	public Member(String n, String p, boolean h, boolean r) {
+		this.name = n;
+		this.password = p;
+		this.hasPassword = h;
+		this.registered = r;
+	}
+	
+	
+	
 	
 	
 	public String getName() {return name;}
-	
-	public String getId() {return id;}
+
 	
 	public String getPassword() {return password;}
 	

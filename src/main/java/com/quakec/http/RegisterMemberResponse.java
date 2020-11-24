@@ -1,24 +1,24 @@
 package com.quakec.http;
 
 public class RegisterMemberResponse {
-	public int statusCode;
-	public String error;
+	public final String response;
+	public final int httpCode;
 	
-	public RegisterMemberResponse (int statusCode) {
-		this.statusCode = statusCode;
-		this.error = "";
+	
+	public RegisterMemberResponse (String s, int c) {
+		this.response = s;
+		this.httpCode = c;
 	}
 	
-	public RegisterMemberResponse (int statusCode, String errorMessage) {
-		this.statusCode = statusCode;
-		this.error = errorMessage;
+	public RegisterMemberResponse (String s) {
+		this.response = s;
+		this.httpCode = 200;
 	}
 	
 	public String toString() {
-		if (statusCode / 100 == 2) {  // too cute?
-			return "It worked!";
-		} else {
-			return "ErrorResult(" + statusCode + ", err=" + error + ")";
-		}
+		return "Response(" + response + ")";
 	}
 }
+
+
+

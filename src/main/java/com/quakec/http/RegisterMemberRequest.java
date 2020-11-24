@@ -1,34 +1,34 @@
 package com.quakec.http;
 
 public class RegisterMemberRequest {
-	String arg1;
-	String arg2;
-	String arg3;
+	String choiceId;
+	String name;
+	String password;
 
 	
-	public String getArg1() { return arg1;}
-	public void setArg1(String a) {this.arg1 = a;}
+	public String getChoiceId() { return choiceId;}
+	public void setChoiceId(String c) {this.choiceId = c;}
 	
-	public String getArg2() { return arg2;}
-	public void setArg2(String a) {this.arg2 = a;}
+	public String getName() { return name;}
+	public void setName(String n) {this.name = n;}
 	
-	public String getArg3() { return arg3;}
-	public void setArg3(String a) {this.arg3 = a;}
+	public String getPassword() { return password;}
+	public void setPassword(String p) {this.password = p;}
 	
 	public String toString() {
-		return "Add(" + arg1 + "," + arg2 + "," + arg3 + ")";
+		return "Add(" + choiceId + "," + name + "," + password + ")";
 	}
 	
-	public RegisterMemberRequest(String arg1, String arg2) {
-		this.arg1 = arg1;
-		this.arg2 = arg2;
-		this.arg3 = "";
+	public RegisterMemberRequest(String choiceId, String name) {
+		this.choiceId = choiceId;
+		this.name = name;
+		this.password = "";
 	}
 	
-	public RegisterMemberRequest(String arg1, String arg2, String arg3) {
-		this.arg1 = arg1;
-		this.arg2 = arg2;
-		this.arg3 = arg3;
+	public RegisterMemberRequest(String choiceId, String name, String password) {
+		this.choiceId = choiceId;
+		this.name = name;
+		this.password = password;
 	}
 	
 }
