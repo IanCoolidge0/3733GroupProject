@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.quakec.model.Member;
 
-import edu.wpi.cs.heineman.demo.model.Constant;
 
 
 
@@ -52,6 +51,8 @@ public class MembersDAO {
 //            throw new Exception("Failed to insert constant: " + e.getMessage());
 //        }
     }
+    
+    
 
    
 
