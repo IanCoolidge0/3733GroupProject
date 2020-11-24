@@ -7,8 +7,12 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.quakec.db.MembersDAO;
+import com.quakec.http.RegisterMemberRequest;
+import com.quakec.http.RegisterMemberResponse;
+import com.quakec.model.Member;
 
-public class RegisterMember implements RequestHandler<S3Event, String> {
+public class RegisterMember implements RequestHandler<RegisterMemberRequest,RegisterMemberResponse> {
 
     private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
@@ -18,27 +22,29 @@ public class RegisterMember implements RequestHandler<S3Event, String> {
     RegisterMember(AmazonS3 s3) {
         this.s3 = s3;
     }
+    
+    boolean createMember(String name, String password) throws Exception{
+    	MembersDAO dao = new MembersDAO();
+    	
+    	Member member = new Member(name,password);
+    	return dao.addMember(member);
+    	
+    }
 
     @Override
-    public String handleRequest(S3Event event, Context context) {
-        context.getLogger().log("Received event: " + event);
-
-        // Get the object from the event and show its content type
-        String bucket = event.getRecords().get(0).getS3().getBucket().getName();
-        String key = event.getRecords().get(0).getS3().getObject().getKey();
+    public RegisterMemberResponse handleRequest(RegisterMemberRequest req, Context context) {
+        context.getLogger().log(req.toString());
+        RegisterMemberResponse response;
         try {
-            S3Object response = s3.getObject(new GetObjectRequest(bucket, key));
-            String contentType = response.getObjectMetadata().getContentType();
-            context.getLogger().log("CONTENT TYPE: " + contentType);
-            return contentType;
-        } catch (Exception e) {
-            e.printStackTrace();
-            context.getLogger().log(String.format(
-                "Error getting object %s from bucket %s. Make sure they exist and"
-                + " your bucket is in the same region as this function.", key, bucket));
-            throw e;
-        }
-    }
+        		if(createMember(req.getArg1(),req.getArg2())) {
+        			response  = new RegisterMemberResponse(200);
+        		} else {
+        			response  = new RegisterMemberResponse(400);
+        		}
+        	} catch (Exception e) {
+        		response  = new RegisterMemberResponse(400);
+        	}
+        return response;
+     }
+
 }
-
-
