@@ -3,8 +3,6 @@ package com.quakec.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.quakec.model.Member;
-
 public class ChoiceMembersDAO {
 	
 	java.sql.Connection conn;
