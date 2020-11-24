@@ -23,6 +23,7 @@ function handleCreateChoiceClick(e) {
 	if(alt4 != "") data["alternatives"].push(alt4);
 	if(alt5 != "") data["alternatives"].push(alt5);
 	
+	var js = JSON.stringify(data);
 	console.log("JS: " + js);
 	
 	var xhr = new XMLHttpRequest();
