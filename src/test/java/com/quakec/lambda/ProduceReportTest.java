@@ -24,7 +24,7 @@ import com.amazonaws.services.s3.model.S3Object;
  * A simple test harness for locally invoking your Lambda function handler.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CreateChoiceTest {
+public class ProduceReportTest {
 
     private final String CONTENT_TYPE = "image/jpeg";
     private S3Event event;
@@ -58,8 +58,8 @@ public class CreateChoiceTest {
     }
 
     @Test
-    public void testCreateChoice() {
-        CreateChoice handler = new CreateChoice(s3Client);
+    public void testProduceReport() {
+        ProduceReport handler = new ProduceReport(s3Client);
         Context ctx = createContext();
 
         String output = handler.handleRequest(event, ctx);
