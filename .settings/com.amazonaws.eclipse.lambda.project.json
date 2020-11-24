@@ -1,0 +1,1 @@
+{"lastDeploymentHandler":"com.quakec.lambda.CreateChoice","lastInvokeHandler":null,"handlerMetadata":{"com.quakec.lambda.CreateChoice":{"deployment":{"regionId":"us-east-2","awsLambdaFunctionName":"createChoice","awsIamRoleName":"developer","awsS3BucketName":"3733quakec","memory":0,"timeout":0},"invoke":null}},"lastInvokedHandlerDeployed":false}
