@@ -19,11 +19,11 @@ public class RegisterMemberRequest {
 		return "Add(" + choiceId + "," + name + "," + password + ")";
 	}
 	
-	public RegisterMemberRequest(String choiceId, String name) {
-		this.choiceId = choiceId;
-		this.name = name;
-		this.password = "";
-	}
+//	public RegisterMemberRequest(String choiceId, String name) {
+//		this.choiceId = choiceId;
+//		this.name = name;
+//		this.password = "";
+//	}
 	
 	public RegisterMemberRequest(String choiceId, String name, String password) {
 		this.choiceId = choiceId;
