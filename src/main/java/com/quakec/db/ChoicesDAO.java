@@ -24,6 +24,19 @@ public class ChoicesDAO {
     	}
     }
     
+    public boolean createChoice(Choice choice) throws SQLException {
+    	PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,description,dateCreated,memberCount,hasChosenAlternative,id) values(?,?,?,?,?,?);");
+    	
+    	ps.setString(1, choice.getName());
+    	ps.setString(2, choice.getDescription());
+    	ps.setTimestamp(3, new Timestamp(choice.getDatetime().getTime()));
+    	ps.setInt(4, choice.getMemberCount());
+    	ps.setBoolean(5, choice.getHasChosenAlternative());
+    	ps.setString(6, choice.getId());
+    	
+    	return ps.execute();
+    }
+    
 	public Choice getChoice(String id) throws Exception {
 	        
 	        try {
