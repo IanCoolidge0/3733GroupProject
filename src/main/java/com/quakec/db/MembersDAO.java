@@ -51,8 +51,6 @@ public class MembersDAO {
 //            throw new Exception("Failed to insert constant: " + e.getMessage());
 //        }
     }
-    
-    
 
    
 
