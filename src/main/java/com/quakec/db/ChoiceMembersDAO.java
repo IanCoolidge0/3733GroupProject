@@ -1,6 +1,7 @@
 package com.quakec.db;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.quakec.model.Member;
 
@@ -18,31 +19,41 @@ public class ChoiceMembersDAO {
     	}
     }
     
-    public boolean addChoiceMember(String choiceId, String memberId) throws Exception {
-//      try {
-//          PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name = ?;");
-//          ps.setString(1, constant.name);
-//          ResultSet resultSet = ps.executeQuery();
-//          
-//          // already present?
-//          while (resultSet.next()) {
-//              Constant c = generateConstant(resultSet);
-//              resultSet.close();
-//              return false;
-//          }
+    public boolean addChoiceMember(String choiceId, String memberName) throws Exception {
+    	try  {
+    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE member  = ?;");
+    		ps.setString(1, memberName);
+    		ResultSet resultSet =  ps.executeQuery();
+    		
+			// already present?
+		    while (resultSet.next()) {
+		    	resultSet.close();
+		        return false;
+		    }
+    	      
+		    ps = conn.prepareStatement("INSERT INTO " + tblName + " (choice,member) values(?,?);");
+		    ps.setString(1,  choiceId);
+		    ps.setString(2,  memberName);
+		    ps.execute();
+		    return true;
+    		
+    	} catch (Exception e) {
+    	      throw new Exception("Failed to insert constant: " + e.getMessage());
+    	}
+    }
+    	
+    	
+    	
+    	
 
-          PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (choice,member) values(?,?);");
-          ps.setString(1,  choiceId);
-          ps.setString(2,  memberId);
-          ps.execute();
-          return true;
-
-//      } catch (Exception e) {
-//          throw new Exception("Failed to insert constant: " + e.getMessage());
-//      }
-  }
 
 }
+
+
+
+
+
+
 
 
 //
@@ -105,31 +116,7 @@ public class ChoiceMembersDAO {
 //        }
 //    }
 //    
-//    public boolean addMember(Member member) throws Exception {
-//        try {
-//            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name = ?;");
-//            ps.setString(1, member.getName());
-//            ResultSet resultSet = ps.executeQuery();
-//            
-//            // already present?
-//            while (resultSet.next()) {
-//                Member m = generateMember(resultSet);
-//                resultSet.close();
-//                return false;
-//            }
-//
-//            ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,password,hasPwd,registered) values(?,?,?,?);");
-//            ps.setString(1,  member.getName());
-//            ps.setString(2,  member.getPassword());
-//            ps.setBoolean(3,  member.getHasPassword());
-//            ps.setBoolean(4,  member.getRegistered());
-//            ps.execute();
-//            return true;
-//
-//        } catch (Exception e) {
-//            throw new Exception("Failed to insert constant: " + e.getMessage());
-//        }
-//    }
+//    
 //    
 //    public List<Member> getAllMembers() throws Exception {
 //        
