@@ -24,5 +24,21 @@ public class Member {
 		}
 		
 	}
+	
+	
+	
+	public String getName() {return name;}
+	
+	public String getId() {return id;}
+	
+	public String getPassword() {return password;}
+	
+	public boolean getHasPassword() {return hasPassword;}
+	
+	
+	public boolean getRegistered() {return registered;}
+	public void setRegistered(boolean r) {this.registered = r;}
+	
+	
 
 }
