@@ -53,13 +53,13 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
 		boolean success = true;
 		
 		Choice choice = new Choice(title, description, 0);
-		ctx.getLogger().log("about to create choice");
+
 		choiceDAO.createChoice(choice);
-		ctx.getLogger().log("just created choice");
+		
 		for(int i = 0; i < alternatives.size(); i++) {
 			String alternName = alternatives.get(i);
-			
 			Alternative altern = new Alternative(alternName, i + 1);
+
 			altDAO.createAlternative(altern);
 			chAltDAO.addAlternativeToChoice(choice.getId(), altern.getId());
 		}
