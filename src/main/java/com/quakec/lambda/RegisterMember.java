@@ -31,7 +31,7 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     
 
     
-    boolean createMember(String name, String password) throws Exception { 
+    boolean createMember(String name, String password, Context context) throws Exception { 
     	if (logger != null) { logger.log("in createMember"); }
     	MembersDAO dao = new MembersDAO();
     	
@@ -45,7 +45,7 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     	}
     }
     
-    boolean createChoiceMember(String choiceId, String name) throws Exception {
+    boolean createChoiceMember(String choiceId, String name, Context context) throws Exception {
     	if (logger != null) { logger.log("in createChoiceMembers"); }
     	ChoiceMembersDAO dao = new ChoiceMembersDAO();
     	
@@ -61,15 +61,18 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     }
     
     
+    
+    
 
     @Override
     public RegisterMemberResponse handleRequest(RegisterMemberRequest req, Context context) {
-        context.getLogger().log(req.toString());
+    	context.getLogger().log("Received event: " + req);
         RegisterMemberResponse response;
         try {
-        	if(createMember(req.getName(),req.getPassword())) {
-        		if(createChoiceMember(req.getChoiceId(),req.getName())) {
+        	if(createMember(req.getName(),req.getPassword(),context)) {
+        		if(createChoiceMember(req.getChoiceId(),req.getName(),context)) {
         			response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId());
+  
         		} else {
         			response = new RegisterMemberResponse(req.getName()+" not registered to "+req.getChoiceId(), 422);
         		}		
