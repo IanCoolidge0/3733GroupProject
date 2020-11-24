@@ -11,6 +11,10 @@ public class Member {
 	
 	public Member(String n, String p) {
 		this.name = n;
+<<<<<<< HEAD
+=======
+		this.id = UUID.randomUUID().toString(); 
+>>>>>>> branch 'main' of https://github.com/IanCoolidge0/3733GroupProject.git
 		this.registered = false;
 		if(p.equals("")) {
 			this.hasPassword = false;

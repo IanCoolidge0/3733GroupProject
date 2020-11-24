@@ -38,15 +38,15 @@ public class DatabaseUtil {
 		}
 		
 		// These three environment variables must be set!
-		String dbUsername = System.getenv("quakecAdmin");
+		String dbUsername = System.getenv("dbUsername");
 		if (dbUsername == null) {
 			System.err.println("Environment variable dbUsername is not set!");
 		}
-		String dbPassword = System.getenv("darwin01");
+		String dbPassword = System.getenv("dbPassword");
 		if (dbPassword == null) {
 			System.err.println("Environment variable dbPassword is not set!");
 		}
-		String rdsMySqlDatabaseUrl = System.getenv("quakecdb.cn9ssqhrjuzw.us-east-2.rds.amazonaws.com");
+		String rdsMySqlDatabaseUrl = System.getenv("rdsMySqlDatabaseUrl");
 		if (rdsMySqlDatabaseUrl == null) {
 			System.err.println("Environment variable rdsMySqlDatabaseUrl is not set!");
 		}

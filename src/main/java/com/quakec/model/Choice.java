@@ -18,7 +18,7 @@ public class Choice {
 		this.memberCount = m;
 		this.datetime = new Date();
 		this.hasChosenAlternative = false;
-		this.id = UUID.fromString("choice:"+name+datetime.toString()).toString(); 
+		this.id = UUID.randomUUID().toString(); 
 	}
 	
 	

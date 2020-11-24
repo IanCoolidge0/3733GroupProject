@@ -1,8 +1,14 @@
 package com.quakec.db;
 
+<<<<<<< HEAD
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+=======
+
+
+import java.sql.PreparedStatement;
+>>>>>>> branch 'main' of https://github.com/IanCoolidge0/3733GroupProject.git
 
 import com.quakec.model.Member;
 

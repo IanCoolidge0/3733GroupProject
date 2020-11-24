@@ -1,7 +1,25 @@
-<form action="/">
-<h1>Create Choice</h1>
-<p><label for="lchoice">Choice:</label> <input name="choice" type="text" />
-   <label for="ldescription">Description:</label> <input name="description" type="text" /><br />
-   <label for="lnumparticipants">Number of Participants:</label> <input name="numparticipants" type="text" /><br />
-  <label for="lalternative1">Alternative 1:</label> <input name="alternative1" type="text" /><br /> <label for="lalternative2">Alternative 2:</label> <input name="alternative2" type="text" /><br /> <label for="lalternative3">Alternative 3 (Optional):</label> <input name="alternative3" type="text" /><br /> <label for="lalternative4">Alternative 4 (Optional):</label> <input name="alternative4" type="text" /><br /> <label for="lalternative5">Alternative 5 (Optional):</label> <input name="alternative5" type="text" /><br /> <input type="submit" value="Register" /></p>
-</form>
+<html>
+	<head>
+		<link rel="shortcut icon" href="#">
+	
+		<!-- relative path name to access js -->
+		<script type="text/javascript" src="../js/api.js"></script>
+		<script type="text/javascript" src="../js/createchoice.js"></script>
+	</head>
+	<body>
+		<h1>Create Choice</h1>
+		<form name="createChoiceForm" method="post">
+		
+			<label for="lchoice">Choice:</label> <input name="choice" type="text" />
+   			<label for="ldescription">Description:</label> <input name="description" type="text" /><br />
+   			<label for="lnumparticipants">Number of Participants:</label> <input name="numparticipants" type="text" /><br />
+  			<label for="lalternative1">Alternative 1:</label> <input name="alternative1" type="text" /><br /> 
+  			<label for="lalternative2">Alternative 2:</label> <input name="alternative2" type="text" /><br /> 
+  			<label for="lalternative3">Alternative 3 (Optional):</label> <input name="alternative3" type="text" /><br /> 
+  			<label for="lalternative4">Alternative 4 (Optional):</label> <input name="alternative4" type="text" /><br /> 
+  			<label for="lalternative5">Alternative 5 (Optional):</label> <input name="alternative5" type="text" /><br />
+  			
+  			<input type="button" value="Create Choice" onClick="JavaScript:handleCreateChoiceClick(this)" />
+		</form>
+	</body>
+</html>

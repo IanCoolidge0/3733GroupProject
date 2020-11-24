@@ -15,7 +15,7 @@ public class Alternative {
 	}
 	
 	public Alternative(String name, int number) {
-		this(name, UUID.fromString("alternative:"+name+number).toString(), number);
+		this(name, UUID.randomUUID().toString(), number);
 	}
 
 	public String getName() {

@@ -1,9 +1,11 @@
 package com.quakec.http;
 
+import java.util.List;
+
 public class CreateChoiceRequest {
 	String title;
 	String description;
-	String[] alternatives;
+	List<String> alternatives;
 	
 	public String getTitle() {
 		return title;
@@ -21,20 +23,29 @@ public class CreateChoiceRequest {
 		this.description = description;
 	}
 
-	public String[] getAlternatives() {
+	public List<String> getAlternatives() {
 		return alternatives;
+	}
+	
+	public void setAlternatives(List<String> alternatives) {
+		this.alternatives = alternatives;
 	}
 
 	public String toString() {
 		String s = "CreateChoice(" + title + "," + description + ",";
-		for(int i = 0; i < alternatives.length - 1; i++) s += alternatives[i] + ",";
-		s += alternatives[alternatives.length - 1] + ")";
+		if(alternatives == null) return s;
+		for(int i = 0; i < alternatives.size() - 1; i++) s += alternatives.get(i) + ",";
+		s += alternatives.get(alternatives.size() - 1) + ")";
 		return s;
 	}
 	
-	public CreateChoiceRequest(String title, String description, String[] alternatives) {
+	public CreateChoiceRequest(String title, String description, List<String> alternatives) {
 		this.title = title;
 		this.description = description;
 		this.alternatives = alternatives;
+	}
+	
+	public CreateChoiceRequest() {
+		
 	}
 }
