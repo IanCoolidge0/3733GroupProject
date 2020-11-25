@@ -41,5 +41,5 @@ function handleCreateChoiceClick(e) {
 			console.log("XHR: " + xhr.responseText);
 		}
 	}
-	window.location.replace(https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html);
+	//window.location.replace('https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html?'+choiceid);
 }

@@ -1,13 +1,19 @@
 <html>
   <head>
+    <script>
+    function replaceDefaultChoiceId() {
+      document.getElementById("choiceidval").defaultValue = window.location.href.substring(78);
+    }
+    window.onload = replaceDefaultChoiceId;
+    </script>
     <link rel="shortcut icon" href="#">
 		<script type="text/javascript" src="../js/api.js"></script>
 		<script type="text/javascript" src="../js/registeruser.js"></script>
   </head>
   <body>
-    <h1>Register User</h1>
+    <h1 id="heading1"> Register User</h1>
     <form name="registerMemberForm" method="post">
-      <label for="lchoiceid">Choice ID:</label> <input name="choiceid" type="text" /> <br />
+      <label for="lchoiceid">Choice ID:</label> <input id="choiceidval" name="choiceid" type="text" /> <br />
       <label for="lname">Name:</label> <input name="name" type="text" /><br />
       <label for="lpassword">Password (Optional):</label> <input name="password" type="text" /><br />
       <input type="button" value="Register" onClick="JavaScript:handleRegisterMemberClick(this)" />
