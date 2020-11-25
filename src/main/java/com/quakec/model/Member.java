@@ -32,9 +32,7 @@ public class Member {
 	
 	
 	
-	
 	public String getName() {return name;}
-
 	
 	public String getPassword() {return password;}
 	
