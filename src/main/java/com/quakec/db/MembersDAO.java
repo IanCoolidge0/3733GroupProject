@@ -21,7 +21,6 @@ public class MembersDAO {
     	}
     }
     
-    
     private Member generateMember(ResultSet resultSet) throws Exception {
     	String name = resultSet.getString("name");
     	String password = resultSet.getString("password");

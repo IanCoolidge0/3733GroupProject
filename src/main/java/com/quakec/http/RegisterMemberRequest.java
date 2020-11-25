@@ -31,4 +31,8 @@ public class RegisterMemberRequest {
 		this.password = password;
 	}
 	
+	public RegisterMemberRequest() {
+		
+	}
+	
 }
