@@ -12,13 +12,13 @@ public class Choice {
 	public boolean hasChosenAlternative;
 	public final String id;
 	
-	public Choice(String n, String d, int m) {
+	public Choice(String n, String d, int m, String i) {
 		this.name = n;
 		this.description = d;
 		this.memberCount = m;
 		this.datetime = new Date();
 		this.hasChosenAlternative = false;
-		this.id = UUID.randomUUID().toString(); 
+		this.id = i; 
 	}
 	
 	
