@@ -5,31 +5,32 @@ public class Member {
 	public final String name;
 	public final String password;
 	public final boolean hasPassword;
-	public boolean registered;
+	public boolean isRegistered;
+	public final String choiceId;
 	
 	
 	
-	public Member(String n, String p) {
-		this.name = n;
-		this.registered = false;
-		if(p.equals("")) {
+	public Member(String name, String password, String choiceId) {
+		this.name = name;
+		this.isRegistered = false;
+		this.choiceId = choiceId;
+		if(password.equals("")) {
 			this.hasPassword = false;
 			this.password = "";
 		} else {
 			this.hasPassword = true;
-			this.password  = p;
+			this.password  = password;
 		}
 		
 	}
 	
-	public Member(String n, String p, boolean h, boolean r) {
-		this.name = n;
-		this.password = p;
-		this.hasPassword = h;
-		this.registered = r;
+	public Member(String name, String password, boolean hasPassword, boolean isRegistered, String choiceId) {
+		this.name = name;
+		this.password = password;
+		this.hasPassword = hasPassword;
+		this.isRegistered = isRegistered;
+		this.choiceId = choiceId;
 	}
-	
-	
 	
 	
 	public String getName() {return name;}
@@ -39,8 +40,10 @@ public class Member {
 	public boolean getHasPassword() {return hasPassword;}
 	
 	
-	public boolean getRegistered() {return registered;}
-	public void setRegistered(boolean r) {this.registered = r;}
+	public boolean getRegistered() {return isRegistered;}
+	public void setRegistered(boolean isRegistered) {this.isRegistered = isRegistered;}
+	
+	public String getChoiceId() {return  choiceId;}
 	
 	
 
