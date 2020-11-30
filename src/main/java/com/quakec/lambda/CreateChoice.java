@@ -34,7 +34,7 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
         try {
         	
         	if(createChoice(req.getTitle(), req.getDescription(), req.getAlternatives(), context)) {
-        		response = new CreateChoiceResponse(201);
+        		response = new CreateChoiceResponse(200);
         	} else {
         		response = new CreateChoiceResponse(400);
         	}
