@@ -12,23 +12,23 @@ public class Choice {
 	public boolean hasChosenAlternative;
 	public final String id;
 	
-	public Choice(String n, String d, int m) {
+	public Choice(String n, String d, int m, String i) {
 		this.name = n;
 		this.description = d;
 		this.memberCount = m;
 		this.datetime = new Date();
 		this.hasChosenAlternative = false;
-		this.id = UUID.randomUUID().toString(); 
+		this.id = i; 
 	}
 	
 	
-	public Choice(String n, String description, Date datetime, int m, boolean h, String i) {
-		this.name = n;
+	public Choice(String name, String description, Date datetime, int memberCount, boolean hasChosenAlternative, String id) {
+		this.name = name;
 		this.description = description;
 		this.datetime = datetime;
-		this.memberCount = m;
-		this.hasChosenAlternative = h;
-		this.id = i; 
+		this.memberCount = memberCount;
+		this.hasChosenAlternative = hasChosenAlternative;
+		this.id = id; 
 	}
 	
 
@@ -39,7 +39,7 @@ public class Choice {
 	
 	public String getDescription() {return description;}
 	
-	public void setMemberCount(int m) { memberCount = m; }
+	public void setMemberCount(int memberCount) { this.memberCount = memberCount;}
 	public int getMemberCount() {return memberCount;}
 	
 	public Date getDatetime() {return datetime;}
@@ -47,7 +47,7 @@ public class Choice {
 	
 	
 	public boolean getHasChosenAlternative() {return hasChosenAlternative;}
-	public void setHasChosenAlternative(boolean h) {this.hasChosenAlternative= h;}
+	public void setHasChosenAlternative(boolean hasChosenAlternative) {this.hasChosenAlternative= hasChosenAlternative;}
 	
 	
 

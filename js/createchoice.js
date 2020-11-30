@@ -23,6 +23,18 @@ function handleCreateChoiceClick(e) {
 	if(alt4 != "") data["alternatives"].push(alt4);
 	if(alt5 != "") data["alternatives"].push(alt5);
 	
+	
+	// 8digit-4digit-4digit-4digit-12digit
+	var p1 = (Math.floor(Math.random()*90000000) + 10000000).toString;
+	var p2 = (Math.floor(Math.random()*9000) + 1000).toString;
+	var p3 = (Math.floor(Math.random()*9000) + 1000).toString;
+	var p4 = (Math.floor(Math.random()*9000) + 1000).toString;
+	var p5a = (Math.floor(Math.random()*90000000) + 10000000).toString;
+	var p5b = (Math.floor(Math.random()*9000) + 1000).toString;
+	var newId = string.concat(p1,"-",p2,"-",p3,"-",p4,"-",p5a,p5b);
+	
+	data["id"] = newId;
+	
 	var js = JSON.stringify(data);
 	console.log("JS: " + js);
 	
@@ -44,4 +56,6 @@ function handleCreateChoiceClick(e) {
 	
 	// send the collected data as `JSON
 	xhr.send(js);
+	
+	window.location.replace("https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html?"+newId);
 }

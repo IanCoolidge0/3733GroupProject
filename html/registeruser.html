@@ -7,16 +7,36 @@
     window.onload = replaceDefaultChoiceId;
     </script>
     <link rel="shortcut icon" href="#">
-		<script type="text/javascript" src="../js/api.js"></script>
+    <link rel="stylesheet" href="css/registeruserstyling.css">
+    <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/65/wine-glass_1f377.png">
+
+    <script type="text/javascript" src="../js/api.js"></script>
 		<script type="text/javascript" src="../js/registeruser.js"></script>
   </head>
   <body>
-    <h1 id="heading1"> Register User</h1>
+  <section id="header">
+    <div id="company-info">
+      <div id="brand">QuakeC 3733 Project</div>
+      <div id="tagline">When choices are too hard to manage</div>
+    </div>
+    <div id="names">
+      Raymond Carter<br />
+      Ian Coolidge<br />
+      Kyle McFatter<br />
+      Kenneth Nguyen
+    </div>
+  </section>
+  <br />
+  <section id="content">
+    <h1 id="heading1">Register User</h1>
     <form name="registerMemberForm" method="post">
+      <div id="inputs">
       <label for="lchoiceid">Choice ID:</label> <input id="choiceidval" name="choiceid" type="text" /> <br />
       <label for="lname">Name:</label> <input name="name" type="text" /><br />
       <label for="lpassword">Password (Optional):</label> <input name="password" type="text" /><br />
-      <input type="button" value="Register" onClick="JavaScript:handleRegisterMemberClick(this)" />
+      <input type="button" class="button button1" value="Register" onClick="JavaScript:handleRegisterMemberClick(this)" />
+      </div>
     </form>
+  </section>
   </body>
 </html>

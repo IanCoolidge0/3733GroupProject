@@ -1,16 +1,31 @@
 <html>
 	<head>
 		<link rel="shortcut icon" href="#">
-	
+		<link rel="stylesheet" href="css/createchoicestyling.css">
+		<link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/65/wine-glass_1f377.png">
 		<!-- relative path name to access js -->
 		<script type="text/javascript" src="../js/api.js"></script>
 		<script type="text/javascript" src="../js/createchoice.js"></script>
 	</head>
 	<body>
+	<section id="header">
+		<div id="company-info">
+			<div id="brand">QuakeC 3733 Project</div>
+			<div id="tagline">When choices are too hard to manage</div>
+		</div>
+		<div id="names">
+			Raymond Carter<br />
+			Ian Coolidge<br />
+			Kyle McFatter<br />
+			Kenneth Nguyen
+		</div>
+	</section>
+	<br />
+	<section id="content">
 		<h1>Create Choice</h1>
 		<form name="createChoiceForm" method="post">
-		
-			<label for="lchoice">Choice:</label> <input name="choice" type="text" />
+			<div id="inputs">
+			<label for="lchoice">Choice:</label> <input name="choice" type="text" /><br />
    			<label for="ldescription">Description:</label> <input name="description" type="text" /><br />
    			<label for="lnumparticipants">Number of Participants:</label> <input name="numparticipants" type="text" /><br />
   			<label for="lalternative1">Alternative 1:</label> <input name="alternative1" type="text" /><br /> 
@@ -19,7 +34,9 @@
   			<label for="lalternative4">Alternative 4 (Optional):</label> <input name="alternative4" type="text" /><br /> 
   			<label for="lalternative5">Alternative 5 (Optional):</label> <input name="alternative5" type="text" /><br />
   			
-  			<input type="button" value="Create Choice" onClick="JavaScript:handleCreateChoiceClick(this)" />
+  			<input type="button" value="Create Choice" class="button button1" onClick="JavaScript:handleCreateChoiceClick(this)" />
+			</div>
 		</form>
+	</section>
 	</body>
 </html>
