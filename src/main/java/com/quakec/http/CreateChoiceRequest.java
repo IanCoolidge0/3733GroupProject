@@ -6,6 +6,7 @@ public class CreateChoiceRequest {
 	String title;
 	String description;
 	List<String> alternatives;
+	String id;
 	
 	public String getTitle() {
 		return title;
@@ -30,19 +31,29 @@ public class CreateChoiceRequest {
 	public void setAlternatives(List<String> alternatives) {
 		this.alternatives = alternatives;
 	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String toString() {
 		String s = "CreateChoice(" + title + "," + description + ",";
 		if(alternatives == null) return s;
 		for(int i = 0; i < alternatives.size() - 1; i++) s += alternatives.get(i) + ",";
 		s += alternatives.get(alternatives.size() - 1) + ")";
+		s += ", " + id;
 		return s;
 	}
 	
-	public CreateChoiceRequest(String title, String description, List<String> alternatives) {
+	public CreateChoiceRequest(String title, String description, List<String> alternatives, String id) {
 		this.title = title;
 		this.description = description;
 		this.alternatives = alternatives;
+		this.id = id;
 	}
 	
 	public CreateChoiceRequest() {
