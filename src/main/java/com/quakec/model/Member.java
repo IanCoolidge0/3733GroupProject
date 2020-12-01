@@ -10,7 +10,7 @@ public class Member {
 	
 	
 	
-	public Member(String name, String password, String choiceId) {
+	public Member(String choiceId,String name, String password) {
 		this.name = name;
 		this.isRegistered = false;
 		this.choiceId = choiceId;
