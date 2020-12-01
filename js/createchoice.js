@@ -25,14 +25,14 @@ function handleCreateChoiceClick(e) {
 	
 	
 	// 8digit-4digit-4digit-4digit-12digit
-	var p1 = (Math.floor(Math.random()*90000000) + 10000000).toString;
-	var p2 = (Math.floor(Math.random()*9000) + 1000).toString;
-	var p3 = (Math.floor(Math.random()*9000) + 1000).toString;
-	var p4 = (Math.floor(Math.random()*9000) + 1000).toString;
-	var p5a = (Math.floor(Math.random()*90000000) + 10000000).toString;
-	var p5b = (Math.floor(Math.random()*9000) + 1000).toString;
+	var p1 = (Math.floor(Math.random()*90000000) + 10000000);
+	var p2 = (Math.floor(Math.random()*9000) + 1000);
+	var p3 = (Math.floor(Math.random()*9000) + 1000);
+	var p4 = (Math.floor(Math.random()*9000) + 1000);
+	var p5a = (Math.floor(Math.random()*90000000) + 10000000);
+	var p5b = (Math.floor(Math.random()*9000) + 1000);
 	var newId = "";
-	newId.concat(p1,"-",p2,"-",p3,"-",p4,"-",p5a,p5b);
+	newId = newId.concat(p1.toString(),"-",p2.toString(),"-",p3.toString(),"-",p4.toString(),"-",p5a.toString(),p5b.toString());
 	console.log(newId);
 	
 	data["id"] = newId;
@@ -59,5 +59,5 @@ function handleCreateChoiceClick(e) {
 	// send the collected data as `JSON
 	xhr.send(js);
 	
-	window.location.replace("https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html?"+newId);
+	//window.location.replace("https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html?"+newId);
 }
