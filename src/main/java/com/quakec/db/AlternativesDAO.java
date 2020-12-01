@@ -50,8 +50,9 @@ public class AlternativesDAO {
 		String name = resultSet.getString("name");
 		int number = resultSet.getInt("number");
 		String id = resultSet.getString("id");
+		String choiceId = resultSet.getString("choiceId");
 		
-		return new Alternative(name, id, number);
+		return new Alternative(name, id, number, choiceId);
 	}
 	
 }
