@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import com.amazonaws.services.lambda.runtime.Context;
 import com.quakec.model.Choice;
 
 
@@ -25,7 +26,7 @@ public class ChoicesDAO {
     	}
     }
     
-    public boolean createChoice(Choice choice) throws SQLException {
+    public boolean createChoice(Choice choice, Context ctx) throws SQLException {
     	PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,description,dateCreated,memberCount,hasChosenAlternative,id) values(?,?,?,?,?,?);");
     	
     	ps.setString(1, choice.getName());

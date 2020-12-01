@@ -8,6 +8,7 @@ import com.quakec.db.ApprovalDAO;
 import com.quakec.db.MembersDAO;
 import com.quakec.http.SelectApprovalRequest;
 import com.quakec.http.SelectApprovalResponse;
+import com.quakec.model.Approval;
 import com.quakec.model.Member;
 
 public class SelectApproval implements RequestHandler<SelectApprovalRequest, SelectApprovalResponse> {
@@ -32,9 +33,16 @@ public class SelectApproval implements RequestHandler<SelectApprovalRequest, Sel
         try {
         	Member member = membersDAO.getMember(req.getName());
         	if(member != null) {
+        		Approval existingApproval = approvalDAO.tryGetExistingApproval(req.getAlternativeId(), req.getName());
         		
+        		if(existingApproval != null) {
+        			approvalDAO.removeApproval(existingApproval);
+        		}
+        		
+        		Approval approval = new Approval(req.getAlternativeId(), req.getName(), true);
+        		approvalDAO.addApproval(approval);
         	} else {
-        		response = new SelectApprovalResponse(400, "Member not found with given name.");
+        		response = new SelectApprovalResponse(400, "Member not found with given name: " + req.getName());
         	}
         } catch(Exception e) {
         	response = new SelectApprovalResponse(400, "Unable to select approval: " + e.getMessage());
