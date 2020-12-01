@@ -17,7 +17,7 @@ function handleRegisterMemberClick(e) {
 	console.log("JS: " + js);
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", registeruser, true);
+	xhr.open("POST", registeruser_url, true);
 
 	// send the collected data as JSON
 	xhr.send(js);
