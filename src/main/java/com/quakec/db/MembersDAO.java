@@ -26,7 +26,8 @@ public class MembersDAO {
     	String password = resultSet.getString("password");
     	boolean hasPassword = resultSet.getBoolean("hasPwd");
     	boolean registered = resultSet.getBoolean("registered");
-    	return new Member(name,password,hasPassword,registered);
+    	String choiceId = resultSet.getString("choiceId");
+    	return new Member(name,password,hasPassword,registered,choiceId);
     	
     }
 
@@ -91,11 +92,12 @@ public class MembersDAO {
                 return false;
             }
 
-            ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,password,hasPwd,registered) values(?,?,?,?);");
+            ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,password,hasPwd,registered,choiceId) values(?,?,?,?,?);");
             ps.setString(1,  member.getName());
             ps.setString(2,  member.getPassword());
             ps.setBoolean(3,  member.getHasPassword());
             ps.setBoolean(4,  member.getRegistered());
+            ps.setString(5, member.getChoiceId());
             ps.execute();
             return true;
 
