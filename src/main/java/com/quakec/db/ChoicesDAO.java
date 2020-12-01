@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import com.quakec.model.Choice;
 
@@ -58,7 +59,31 @@ public class ChoicesDAO {
 	        	e.printStackTrace();
 	            throw new Exception("Failed in getting constant: " + e.getMessage());
 	        }
-		
+	}
+
+	public Choice[] getAllChoices() throws Exception {
+		ArrayList<Choice> tempChoices = new ArrayList<>();
+		try {
+			Choice choice = null;
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				choice = generateChoice(resultSet);
+				tempChoices.add(choice);
+			}
+
+			resultSet.close();
+			ps.close();
+			Choice[] choices = new Choice[tempChoices.size()];
+			choices = tempChoices.toArray(choices);
+
+			return choices;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Failed in getting constant: " + e.getMessage());
+		}
 	}
 	
 	private Choice generateChoice(ResultSet resultSet) throws Exception {
@@ -72,9 +97,4 @@ public class ChoicesDAO {
         
         return new Choice (name, description, date, memberCount, hasChosenAlternative, id);
     }
-	
-    
-
-   
-
 }
