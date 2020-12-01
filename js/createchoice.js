@@ -31,7 +31,9 @@ function handleCreateChoiceClick(e) {
 	var p4 = (Math.floor(Math.random()*9000) + 1000).toString;
 	var p5a = (Math.floor(Math.random()*90000000) + 10000000).toString;
 	var p5b = (Math.floor(Math.random()*9000) + 1000).toString;
-	var newId = string.concat(p1,"-",p2,"-",p3,"-",p4,"-",p5a,p5b);
+	var newId = "";
+	newId.concat(p1,"-",p2,"-",p3,"-",p4,"-",p5a,p5b);
+	console.log(newId);
 	
 	data["id"] = newId;
 	
