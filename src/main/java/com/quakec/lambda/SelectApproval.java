@@ -41,6 +41,8 @@ public class SelectApproval implements RequestHandler<SelectApprovalRequest, Sel
 	        		Approval approval = new Approval(req.getAlternativeId(), req.getName(), true);
 	        		approvalDAO.addApproval(approval);
         		}
+        		
+        		response = new SelectApprovalResponse(200);
         	} else {
         		response = new SelectApprovalResponse(400, "Member not found with given name: " + req.getName());
         	}

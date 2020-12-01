@@ -119,8 +119,20 @@ public class ApprovalDAO {
 		return new ArrayList<Approval>();
 	}
 
-	public Approval tryGetExistingApproval(String alternativeId, String name) {
-		return null;
+	public Approval tryGetExistingApproval(String alternativeId, String name) throws SQLException {
+		Approval app = null;
+		
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE alternativeId=? AND memberName=?;");
+		ps.setString(1, alternativeId);
+		ps.setString(2, name);
+		
+		ResultSet resultSet = ps.executeQuery();
+		
+		while(resultSet.next()) app = generateApproval(resultSet);
+		resultSet.close();
+		ps.close();
+		
+		return app;
 	}
 
 }
