@@ -92,7 +92,7 @@ public class MembersDAO {
                 return false;
             }
 
-            ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,password,hasPwd,registered,choiceId) values(?,?,?,?,?);");
+            ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,password,hasPassword,isRegistered,choiceId) values(?,?,?,?,?);");
             ps.setString(1,  member.getName());
             ps.setString(2,  member.getPassword());
             ps.setBoolean(3,  member.getHasPassword());

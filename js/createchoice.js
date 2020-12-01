@@ -53,11 +53,11 @@ function handleCreateChoiceClick(e) {
 		if(xhr.readyState == XMLHttpRequest.DONE) {
 			console.log("XHR: " + xhr.responseText);
 		}
+		window.location.replace("https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html?"+newId);
 	};
-	//window.location.replace('https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html?'+choiceid);
 	
 	// send the collected data as `JSON
 	xhr.send(js);
 	
-	window.location.replace("https://3733quakec.s3.us-east-2.amazonaws.com/presentations/registeruser.html?"+newId);
+	
 }

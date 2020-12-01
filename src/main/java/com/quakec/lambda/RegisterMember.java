@@ -8,7 +8,6 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
-import com.quakec.db.ChoiceMembersDAO;
 import com.quakec.db.MembersDAO;
 import com.quakec.http.RegisterMemberRequest;
 import com.quakec.http.RegisterMemberResponse;
@@ -31,37 +30,20 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     
 
     
-    boolean createMember(String name, String password, Context context) throws Exception { 
+    boolean createMember(String choiceId, String name, String password, Context context) throws Exception { 
     	if (logger != null) { logger.log("in createMember"); }
     	MembersDAO dao = new MembersDAO();
     	
     	// check if present
     	Member exist = dao.getMember(name);
-    	Member constant = new Member (name, password);
+    	Member constant = new Member (choiceId, name, password);
     	if (exist == null) {
     		return dao.addMember(constant);
     	} else {
     		return false;
     	}
     }
-   
-    boolean createChoiceMember(String choiceId, String name, Context context) throws Exception {
-    	if (logger != null) { logger.log("in createChoiceMembers"); }
-    	ChoiceMembersDAO dao = new ChoiceMembersDAO();
-    	
-    	// check if present
-//   	Member exist = dao.getMember(name);
-//    	Member constant = new Member (name, password);
-//    	if (exist == null) {
-    	return dao.addChoiceMember(choiceId,name);
-//    	} else {
-//    		return false;
-//    	}
-//    	return false;
-    }
-    
-    
-    
+
     
 
     @Override
@@ -69,13 +51,8 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     	context.getLogger().log("Received event: " + req);
         RegisterMemberResponse response;
         try {
-        	if(createMember(req.getName(),req.getPassword(),context)) {
-        		if(createChoiceMember(req.getChoiceId(),req.getName(),context)) {
-        			response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId());
-  
-        		} else {
-        			response = new RegisterMemberResponse(req.getName()+" not registered to "+req.getChoiceId(), 422);
-        		}		
+        	if(createMember(req.getChoiceId(),req.getName(),req.getPassword(),context)) {
+        		response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId());		
         	} else {
         		response = new RegisterMemberResponse(req.getName(), 422);
         	}
