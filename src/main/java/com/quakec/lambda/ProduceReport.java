@@ -7,6 +7,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.quakec.db.ChoicesDAO;
+import com.quakec.model.Choice;
 
 public class ProduceReport implements RequestHandler<S3Event, String> {
 
@@ -38,5 +40,12 @@ public class ProduceReport implements RequestHandler<S3Event, String> {
                 + " your bucket is in the same region as this function.", key, bucket));
             throw e;
         }
+    }
+
+    private boolean produceReport() throws Exception {
+        ChoicesDAO choiceDAO = new ChoicesDAO();
+        Choice[] choices = choiceDAO.getAllChoices();
+
+        return true;
     }
 }
