@@ -43,24 +43,7 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     		return false;
     	}
     }
-    
-//    boolean createChoiceMember(String choiceId, String name, Context context) throws Exception {
-//    	if (logger != null) { logger.log("in createChoiceMembers"); }
-//    	ChoiceMembersDAO dao = new ChoiceMembersDAO();
-//    	
-//    	// check if present
-////   	Member exist = dao.getMember(name);
-////    	Member constant = new Member (name, password);
-////    	if (exist == null) {
-//    	return dao.addChoiceMember(choiceId,name);
-////    	} else {
-////    		return false;
-////    	}
-////    	return false;
-//    }
-    
-    
-    
+
     
 
     @Override
