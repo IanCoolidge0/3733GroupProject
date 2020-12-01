@@ -97,9 +97,4 @@ public class ChoicesDAO {
         
         return new Choice (name, description, date, memberCount, hasChosenAlternative, id);
     }
-	
-    
-
-   
-
 }
