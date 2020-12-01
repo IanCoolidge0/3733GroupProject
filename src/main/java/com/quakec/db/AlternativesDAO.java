@@ -22,11 +22,12 @@ public class AlternativesDAO {
 	}
 	
 	public boolean createAlternative(Alternative alternative) throws SQLException {
-		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (number,name,id) values(?,?,?)");
+		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (number,name,id,choiceId) values(?,?,?,?)");
 		
 		ps.setInt(1, alternative.getNumber());
 		ps.setString(2, alternative.getName());
 		ps.setString(3, alternative.getId());
+		ps.setString(4, alternative.getChoiceId());
 		
 		return ps.execute();
 	}
