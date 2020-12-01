@@ -27,7 +27,7 @@ public class Approval {
 	public void setApproval(boolean isApproval) {
 		this.isApproval = isApproval;
 	}
-	public boolean getApproval() {return isApproval;}
+	public boolean isApproval() {return isApproval;}
 	
 	public String getId()  {return id;}
 	
