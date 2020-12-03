@@ -127,9 +127,8 @@ public class FeedbackDAO {
 		List<Feedback> feedback = new ArrayList<Feedback>();
 		AlternativesDAO alternativesDAO = new AlternativesDAO();
 		for(Alternative a : alternativesDAO.getAlternativesWithChoiceId(choiceId)) {
-			feedback.addAll(getAllFeedbackOnAlternative(a.getId()));
+			feedback.addAll(getAllFeedbackOnAlternative(a.getId()))
 		}
-		return feedback;
 	}
 
 	
