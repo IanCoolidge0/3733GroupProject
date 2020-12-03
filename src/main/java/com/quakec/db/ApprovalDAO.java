@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.quakec.model.Alternative;
 import com.quakec.model.Approval;
+import com.quakec.model.Feedback;
 
 public class ApprovalDAO {
 	
@@ -25,11 +27,13 @@ public class ApprovalDAO {
 	private Approval generateApproval(ResultSet rs) throws SQLException {
 		String id = rs.getString("id");
 		String alternativeId = rs.getString("alternativeId");
-		String name = rs.getString("memberName");
+		String memberId = rs.getString("memberId");
+		String memberName = rs.getString("memberName");
 		boolean isApproval = rs.getBoolean("isApproval");
 		
-		return new Approval(alternativeId, name, isApproval, id);
+		return new Approval(id, alternativeId, memberId, memberName, isApproval);
 	}
+	
 	
 	public Approval getApproval(String id) throws Exception {
 		Approval app = null;
@@ -62,14 +66,18 @@ public class ApprovalDAO {
 	}
 	
 	public boolean addApproval(Approval approval) throws Exception {
-		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id,alternativeId,memberName,isApproval) values(?,?,?,?);");
+		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id,alternativeId,memberId, memberName,isApproval) values(?,?,?,?);");
+		
 		ps.setString(1, approval.getId());
 		ps.setString(2, approval.getAlternativeId());
-		ps.setString(3, approval.getMemberName());
-		ps.setBoolean(4, approval.isApproval());
+		ps.setString(3, approval.getMemberId());
+		ps.setString(4, approval.getMemberName());
+		ps.setBoolean(5, approval.getIsApproval());
 		
 		return ps.execute();
 	}
+	
+
 	
 	public List<Approval> getAllApproval() throws Exception {
 		List<Approval> approvals = new ArrayList<Approval>();
@@ -85,11 +93,11 @@ public class ApprovalDAO {
 		return approvals;
 	}
 	
-	public List<Approval> getAllApprovalFromMember(String memberName) throws Exception {
+	public List<Approval> getAllApprovalFromMember(String memberId) throws Exception {
 		List<Approval> approvals = new ArrayList<Approval>();
 		
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE memberName=?;");
-		ps.setString(1, memberName);
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE memberId=?;");
+		ps.setString(1, memberId);
 		
 		ResultSet resultSet = ps.executeQuery();
 		
@@ -115,8 +123,14 @@ public class ApprovalDAO {
 		return approvals;
 	}
 	
+	
 	public List<Approval> getAllApprovalOnChoice(String choiceId) throws Exception {
-		return new ArrayList<Approval>();
+		List<Approval> approvals = new ArrayList<Approval>();
+		AlternativesDAO alternativesDAO = new AlternativesDAO();
+		for(Alternative a : alternativesDAO.getAlternativesWithChoiceId(choiceId)) {
+			approvals.addAll(getAllApprovalOnAlternative(a.getId()));
+		}
+		return approvals;
 	}
 
 	public Approval tryGetExistingApproval(String alternativeId, String name) throws SQLException {

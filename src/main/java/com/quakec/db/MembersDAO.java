@@ -30,7 +30,7 @@ public class MembersDAO {
     	String name = resultSet.getString("name");
     	String password = resultSet.getString("password");
     	boolean hasPassword = resultSet.getBoolean("hasPassword");
-    	
+   	
     	return new Member(id,choiceId,name,password,hasPassword);   	
     }
 
