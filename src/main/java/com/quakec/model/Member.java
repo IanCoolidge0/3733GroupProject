@@ -1,50 +1,44 @@
 package com.quakec.model;
 
+import java.util.UUID;
 
 public class Member {
+	public final String id;
+	public final String choiceId;
 	public final String name;
 	public final String password;
 	public final boolean hasPassword;
-	public boolean isRegistered;
-	public final String choiceId;
-	
 	
 	
 	public Member(String choiceId,String name, String password) {
-		this.name = name;
-		this.isRegistered = false;
+		this.id = UUID.randomUUID().toString();
 		this.choiceId = choiceId;
+		this.name = name;
 		if(password.equals("")) {
 			this.hasPassword = false;
 			this.password = "";
 		} else {
 			this.hasPassword = true;
 			this.password  = password;
-		}
-		
+		}	
 	}
 	
-	public Member(String name, String password, boolean hasPassword, boolean isRegistered, String choiceId) {
+	public Member(String id, String choiceId, String name, String password, boolean hasPassword) {	
+		this.id = id;
+		this.choiceId = choiceId;
 		this.name = name;
 		this.password = password;
-		this.hasPassword = hasPassword;
-		this.isRegistered = isRegistered;
-		this.choiceId = choiceId;
+		this.hasPassword = hasPassword;	
 	}
 	
+	public String getId() {return id;}
+	
+	public String getChoiceId() {return  choiceId;}
 	
 	public String getName() {return name;}
 	
 	public String getPassword() {return password;}
 	
 	public boolean getHasPassword() {return hasPassword;}
-	
-	
-	public boolean getRegistered() {return isRegistered;}
-	public void setRegistered(boolean isRegistered) {this.isRegistered = isRegistered;}
-	
-	public String getChoiceId() {return  choiceId;}
-	
-	
-
+		
 }
