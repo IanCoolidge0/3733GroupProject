@@ -5,6 +5,7 @@ import java.util.List;
 public class CreateChoiceRequest {
 	String title;
 	String description;
+	int memberCount;
 	List<String> alternatives;
 	String id;
 	
@@ -22,6 +23,14 @@ public class CreateChoiceRequest {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public int getMemberCount() {
+		return memberCount;
+	}
+	
+	public void setMemberCount(int memberCount) {
+		this.memberCount = memberCount;
 	}
 
 	public List<String> getAlternatives() {
@@ -41,7 +50,7 @@ public class CreateChoiceRequest {
 	}
 
 	public String toString() {
-		String s = "CreateChoice(" + title + "," + description + ",";
+		String s = "CreateChoice(" + title + "," + description + "," + memberCount + ",";
 		if(alternatives == null) return s;
 		for(int i = 0; i < alternatives.size() - 1; i++) s += alternatives.get(i) + ",";
 		s += alternatives.get(alternatives.size() - 1) + ")";
@@ -49,9 +58,10 @@ public class CreateChoiceRequest {
 		return s;
 	}
 	
-	public CreateChoiceRequest(String title, String description, List<String> alternatives, String id) {
+	public CreateChoiceRequest(String title, String description, int memberCount, List<String> alternatives, String id) {
 		this.title = title;
 		this.description = description;
+		this.memberCount = memberCount;
 		this.alternatives = alternatives;
 		this.id = id;
 	}
