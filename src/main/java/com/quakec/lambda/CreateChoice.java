@@ -32,7 +32,7 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
         
         try {
         	
-        	if(createChoice(req.getTitle(), req.getDescription(), req.getAlternatives(), req.getId(), context)) {
+        	if(createChoice(req.getTitle(), req.getDescription(), req.getAlternatives(), req.getId(), req.getMemberCount(), context)) {
         		response = new CreateChoiceResponse(200);
         	} else {
         		response = new CreateChoiceResponse(400);
@@ -44,7 +44,7 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
         return response;
     }
 
-	private boolean createChoice(String title, String description, List<String> alternatives, String id, Context ctx) throws Exception {
+	private boolean createChoice(String title, String description, List<String> alternatives, String id, int memberCount, Context ctx) throws Exception {
 		ChoicesDAO choiceDAO = new ChoicesDAO();
 		AlternativesDAO altDAO = new AlternativesDAO();
 		
@@ -52,7 +52,7 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
 		
 		boolean success = true;
 		
-		Choice choice = new Choice(title, description, 0, id);
+		Choice choice = new Choice(id,title, description, memberCount);
 
 		choiceDAO.createChoice(choice, ctx);
 		
@@ -60,7 +60,7 @@ public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateC
 		
 		for(int i = 0; i < alternatives.size(); i++) {
 			String alternName = alternatives.get(i);
-			Alternative altern = new Alternative(alternName, i + 1, id);
+			Alternative altern = new Alternative(id, alternName, i + 1);
 
 			altDAO.createAlternative(altern);
 			

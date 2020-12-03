@@ -40,6 +40,8 @@ public class ChoicesDAO {
     	return ps.execute();
     }
     
+   
+    
 	public Choice getChoice(String id) throws Exception {
 	        
 	        try {
@@ -96,6 +98,6 @@ public class ChoicesDAO {
         boolean hasChosenAlternative  = resultSet.getBoolean("hasChosenAlternative");
         String id  = resultSet.getString("id");
         
-        return new Choice (name, description, date, memberCount, hasChosenAlternative, id);
+        return new Choice (id, name, description, date, memberCount,hasChosenAlternative);
     }
 }

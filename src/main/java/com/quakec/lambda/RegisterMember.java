@@ -34,14 +34,9 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     	if (logger != null) { logger.log("in createMember"); }
     	MembersDAO dao = new MembersDAO();
     	
-    	// check if present
-    	Member exist = dao.getMember(name);
-    	Member constant = new Member (choiceId, name, password);
-    	if (exist == null) {
-    		return dao.addMember(constant);
-    	} else {
-    		return false;
-    	}
+    	Member m = new Member (choiceId, name, password);
+    	return dao.addMember(m);
+    	
     }
 
     
