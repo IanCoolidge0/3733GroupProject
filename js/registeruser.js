@@ -19,7 +19,7 @@ function handleRegisterMemberClick(e) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", registeruser_url, true);
 	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-	xhr.setRequestHeader("Content-Type", "application/json");
+	//xhr.setRequestHeader("Content-Type", "application/json");
 
 	// send the collected data as JSON
 	xhr.send(js);
