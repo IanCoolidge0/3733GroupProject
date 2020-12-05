@@ -1,12 +1,12 @@
 package com.quakec.db;
 
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.quakec.model.Choice;
@@ -93,7 +93,7 @@ public class ChoicesDAO {
         String name  = resultSet.getString("name");
         String description  = resultSet.getString("description");
         Timestamp timestamp  = resultSet.getTimestamp("datetime");
-        Date date = (Date) new java.util.Date(timestamp.getTime());
+        Date date = new Date(timestamp.getTime());
         int memberCount  = resultSet.getInt("memberCount");
         boolean hasChosenAlternative  = resultSet.getBoolean("hasChosenAlternative");
         String id  = resultSet.getString("id");
