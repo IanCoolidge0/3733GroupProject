@@ -3,10 +3,12 @@ package com.quakec.http;
 public class SelectApprovalRequest {
 	String name;
 	String alternativeId;
+	String memberId;
 	
-	public SelectApprovalRequest(String name, String alternativeId) {
+	public SelectApprovalRequest(String name, String alternativeId, String memberId) {
 		this.name = name;
 		this.alternativeId = alternativeId;
+		this.memberId = memberId;
 	}
 	
 	public SelectApprovalRequest() {
@@ -27,5 +29,13 @@ public class SelectApprovalRequest {
 
 	public void setAlternativeId(String alternativeId) {
 		this.alternativeId = alternativeId;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+	
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 }
