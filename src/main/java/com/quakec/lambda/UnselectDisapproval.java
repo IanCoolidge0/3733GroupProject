@@ -8,35 +8,40 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 
-public class UnselectDisapproval implements RequestHandler<S3Event, String> {
+public class UnselectApproval implements RequestHandler<UnselectApprovalRequest, UnselectApprovalRequestResponse> {
 
     private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
-    public UnselectDisapproval() {}
+    public UnselectApproval() {}
 
     // Test purpose only.
-    UnselectDisapproval(AmazonS3 s3) {
+    UnselectApproval(AmazonS3 s3) {
         this.s3 = s3;
     }
 
     @Override
-    public String handleRequest(S3Event event, Context context) {
-        context.getLogger().log("Received event: " + event);
-
-        // Get the object from the event and show its content type
-        String bucket = event.getRecords().get(0).getS3().getBucket().getName();
-        String key = event.getRecords().get(0).getS3().getObject().getKey();
+    public UnselectApprovalResponse handleRequest(UnselectApprovalRequest req, Context context) {
+        context.getLogger().log("Received UnselectApproval event: " + req);
+        
+        UnselectApprovalResponse response:
+        MembersDAO membersDAO = new MembersDAO();
+    	ApprovalDAO approvalDAO = new ApprovalDAO();
+    	
         try {
-            S3Object response = s3.getObject(new GetObjectRequest(bucket, key));
-            String contentType = response.getObjectMetadata().getContentType();
-            context.getLogger().log("CONTENT TYPE: " + contentType);
-            return contentType;
-        } catch (Exception e) {
-            e.printStackTrace();
-            context.getLogger().log(String.format(
-                "Error getting object %s from bucket %s. Make sure they exist and"
-                + " your bucket is in the same region as this function.", key, bucket));
-            throw e;
-        }
+       		Member member = membersDAO.getMember(req.getName());
+       		if(member != null) {
+       			approvalDAO.updateApproval(existingApproval, true);
+       		} else {
+       			approvalDAO.deleteApproval(response);      			
+       		}
+       		response = new UnselectApprovalResponse(200);
+       
+       	} else {
+       		response = new UnselectApprovalResponse(400, "Member not found with given name: " + req.getName());
+       	}
+    }catch (Execption e) {
+    	response = new UnselectApprovalResponse(400, "Unable to unselect approval: " + e.getMessage());
     }
+   	return response
+	}
 }
