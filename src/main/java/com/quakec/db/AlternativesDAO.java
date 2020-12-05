@@ -50,6 +50,21 @@ public class AlternativesDAO {
 		return altern;
 	}
 	
+	
+	public boolean removeAlternative(String id) throws Exception {
+        try {
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM " + tblName + " WHERE id = ?;");
+            ps.setString(1, id);
+            int numAffected = ps.executeUpdate();
+            ps.close();
+            
+            return (numAffected == 1);
+
+        } catch (Exception e) {
+            throw new Exception("Failed to remove alternative: " + e.getMessage());
+        }
+    }
+	
 	public List<Alternative> getAlternativesWithChoiceId(String id) throws Exception {
     	List<Alternative> members = new ArrayList<>();
     	try {
