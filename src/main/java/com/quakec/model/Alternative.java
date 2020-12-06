@@ -4,12 +4,15 @@ import java.util.UUID;
 
 public class Alternative {
 
-	public final String id;
-	public final String choiceId;
-	public final String name;
-	public final int number;
+	public String id;
+	public String choiceId;
+	public String name;
+	public int number;
 	
-
+	public Alternative() {
+		
+	}
+	
 	public Alternative(String choiceId,String name, int number) {
 		this( UUID.randomUUID().toString(),choiceId,name, number);
 	}
@@ -28,5 +31,13 @@ public class Alternative {
 	public String getName() {return name;}
 
 	public int getNumber() {return number;}
+	
+	public void setId(String id) {this.id = id;}
+	
+	public void setChoiceId(String choiceId) {this.choiceId=choiceId;}
+
+	public void setName(String name) {this.name = name;}
+
+	public void setNumber(int number) {this.number = number;}
 	
 }

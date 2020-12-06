@@ -4,12 +4,16 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Feedback {
-	public final String id;
-	public final String alternativeId;
-	public final String memberId;
-	public final String memberName;
-	public final String contents;
-	public final Date datetime;
+	public String id;
+	public String alternativeId;
+	public String memberId;
+	public String memberName;
+	public String contents;
+	public Date datetime;
+	
+	public Feedback() {
+		
+	}
 	
 	
 	public Feedback(String alternativeId, String memberId, String memberName, String contents) {
@@ -36,5 +40,12 @@ public class Feedback {
 	public String getContents() {return contents;}
 	
 	public Date getDatetime() {return datetime;}
+	
+	public void setId(String id) {this.id = id;}
+	public void setAlternativeId(String id) {this.alternativeId = id;}
+	public void setMemberId(String id) {this.memberId = id;}
+	public void setMemberName(String name) {this.memberName = name;}
+	public void setContents(String contents) {this.contents = contents;}
+	public void setDatetime(Date datetime) {this.datetime = datetime;}
 		
 }

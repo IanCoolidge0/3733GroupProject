@@ -5,13 +5,16 @@ import java.util.Date;
 
 public class Choice {
 	
-	public final String id;
-	public final String name;
-	public final String description;
-	public final Date datetime;
-	public final int memberCount;
+	public String id;
+	public String name;
+	public String description;
+	public Date datetime;
+	public int memberCount;
 	public boolean hasChosenAlternative;
 	
+	public Choice() {
+		
+	}
 	
 	public Choice(String id, String name, String description, int memberCount) {
 		this.id = id;
@@ -42,6 +45,12 @@ public class Choice {
 	public int getMemberCount() {return memberCount;}
 	
 	public boolean getHasChosenAlternative() {return hasChosenAlternative;}
+	
+	public void setId(String id) {this.id = id;}
+	public void setName(String name) {this.name = name;}
+	public void setDescription(String description) {this.description = description;}
+	public void setDatetime(Date datetime) {this.datetime = datetime;}
+	public void setMemberCount(int memberCount) {this.memberCount = memberCount;}
 	public void setHasChosenAlternative(boolean hasChosenAlternative) {this.hasChosenAlternative= hasChosenAlternative;}	
 
 }
