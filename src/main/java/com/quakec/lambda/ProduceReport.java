@@ -27,12 +27,7 @@ public class ProduceReport implements RequestHandler<ProduceReportRequest, Produ
     }
 
     @Override
-    public ProduceReportResponse handleRequest(ProduceReportRequest request, Context context) throws Exception {
-        /*
-        - create producereportresponse
-        - using daos, get all info that would be in report
-        -
-         */
+    public ProduceReportResponse handleRequest(ProduceReportRequest request, Context context) {
         // Get the object from the event and show its content type
         ProduceReportResponse response;
 
