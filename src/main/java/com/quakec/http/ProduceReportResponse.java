@@ -43,7 +43,7 @@ public class ProduceReportResponse {
         if (statusCode / 100 == 2) {  // too cute?
             return "It worked!";
         } else {
-            return "ErrorResult(" + statusCode + ", err=" + error + ")";
+            return "ErrorResult(" + statusCode + ", err=" + errMessage + ")";
         }
     }
 }
