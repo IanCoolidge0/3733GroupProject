@@ -8,9 +8,14 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.quakec.db.ChoicesDAO;
+import com.quakec.http.ProduceReportRequest;
+import com.quakec.http.ProduceReportResponse;
 import com.quakec.model.Choice;
 
-public class ProduceReport implements RequestHandler<S3Event, String> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProduceReport implements RequestHandler<ProduceReportRequest, ProduceReportResponse> {
 
     private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
@@ -22,30 +27,43 @@ public class ProduceReport implements RequestHandler<S3Event, String> {
     }
 
     @Override
-    public String handleRequest(S3Event event, Context context) {
-        context.getLogger().log("Received event: " + event);
-
+    public ProduceReportResponse handleRequest(ProduceReportRequest request, Context context) throws Exception {
+        /*
+        - create producereportresponse
+        - using daos, get all info that would be in report
+        -
+         */
         // Get the object from the event and show its content type
-        String bucket = event.getRecords().get(0).getS3().getBucket().getName();
-        String key = event.getRecords().get(0).getS3().getObject().getKey();
+        ProduceReportResponse response;
+
+        int i;
+        List<Choice> choices = getChoices();
+        List<String> choiceNames = new ArrayList<String>();
+        List<String> ids = new ArrayList<String>();
+        List<String> dates = new ArrayList<String>();
+        List<Boolean> completed = new ArrayList<Boolean>();
+
         try {
-            S3Object response = s3.getObject(new GetObjectRequest(bucket, key));
-            String contentType = response.getObjectMetadata().getContentType();
-            context.getLogger().log("CONTENT TYPE: " + contentType);
-            return contentType;
+            Choice currentChoice;
+            for (i = 0; i < choices.size(); i++) {
+                currentChoice = choices.get(i);
+                choiceNames.add(currentChoice.getName());
+                ids.add(currentChoice.getId());
+                dates.add(currentChoice.getDatetime().toString());
+                //TODO make this add completed state of choice
+                completed.add(false);
+            }
+            response = new ProduceReportResponse(choiceNames, ids, dates, completed);
         } catch (Exception e) {
             e.printStackTrace();
-            context.getLogger().log(String.format(
-                "Error getting object %s from bucket %s. Make sure they exist and"
-                + " your bucket is in the same region as this function.", key, bucket));
-            throw e;
+            response = new ProduceReportResponse(403, e.getMessage());
         }
+        return response;
     }
 
-    private boolean produceReport() throws Exception {
+    private List<Choice> getChoices() throws Exception {
         ChoicesDAO choiceDAO = new ChoicesDAO();
-        Choice[] choices = choiceDAO.getAllChoices();
 
-        return true;
+        return choiceDAO.getAllChoices();
     }
 }
