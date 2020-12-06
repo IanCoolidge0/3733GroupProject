@@ -64,8 +64,8 @@ public class ChoicesDAO {
 	        }
 	}
 
-	public Choice[] getAllChoices() throws Exception {
-		ArrayList<Choice> tempChoices = new ArrayList<>();
+	public List<Choice> getAllChoices() throws Exception {
+		ArrayList<Choice> choices = new ArrayList<>();
 		try {
 			Choice choice = null;
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName);
@@ -73,13 +73,11 @@ public class ChoicesDAO {
 
 			while (resultSet.next()) {
 				choice = generateChoice(resultSet);
-				tempChoices.add(choice);
+				choices.add(choice);
 			}
 
 			resultSet.close();
 			ps.close();
-			Choice[] choices = new Choice[tempChoices.size()];
-			choices = tempChoices.toArray(choices);
 
 			return choices;
 
