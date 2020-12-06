@@ -2,13 +2,17 @@ package com.quakec.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.lambda.runtime.events.S3Event;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
+import com.quakec.db.ApprovalDAO;
+import com.quakec.db.MembersDAO;
+import com.quakec.http.SelectApprovalResponse;
+import com.quakec.http.UnselectApprovalRequest;
+import com.quakec.http.UnselectApprovalResponse;
+import com.quakec.model.Approval;
+import com.quakec.model.Member;
 
-public class UnselectApproval implements RequestHandler<S3Event, String> {
+public class UnselectApproval implements RequestHandler<UnselectApprovalRequest, UnselectApprovalResponse> {
 
     private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
@@ -20,23 +24,33 @@ public class UnselectApproval implements RequestHandler<S3Event, String> {
     }
 
     @Override
-    public String handleRequest(S3Event event, Context context) {
-        context.getLogger().log("Received event: " + event);
+    public UnselectApprovalResponse handleRequest(UnselectApprovalRequest req, Context context) {
+    	context.getLogger().log("Received SelectApproval event: " + req);
 
-        // Get the object from the event and show its content type
-        String bucket = event.getRecords().get(0).getS3().getBucket().getName();
-        String key = event.getRecords().get(0).getS3().getObject().getKey();
+    	UnselectApprovalResponse response;
+    	MembersDAO membersDAO = new MembersDAO();
+    	ApprovalDAO approvalDAO = new ApprovalDAO();
+    	
         try {
-            S3Object response = s3.getObject(new GetObjectRequest(bucket, key));
-            String contentType = response.getObjectMetadata().getContentType();
-            context.getLogger().log("CONTENT TYPE: " + contentType);
-            return contentType;
-        } catch (Exception e) {
-            e.printStackTrace();
-            context.getLogger().log(String.format(
-                "Error getting object %s from bucket %s. Make sure they exist and"
-                + " your bucket is in the same region as this function.", key, bucket));
-            throw e;
+        	Member member = membersDAO.getMember(req.getName());
+        	if(member != null) {
+        		Approval existingApproval = approvalDAO.tryGetExistingApproval(req.getAlternativeId(), req.getName());
+        		
+        		if(existingApproval != null) {
+        			approvalDAO.updateApproval(existingApproval, true);
+        		} else {
+	        		Approval approval = new Approval(req.getAlternativeId(), req.getMemberId(), req.getName(), true);
+	        		approvalDAO.addApproval(approval);
+        		}
+        		
+        		response = new UnselectApprovalResponse(200);
+        	} else {
+        		response = new UnselectApprovalResponse(400, "Member not found with given name: " + req.getName());
+        	}
+        } catch(Exception e) {
+        	response = new UnselectApprovalResponse(400, "Unable to select approval: " + e.getMessage());
         }
-    }
+        
+        return response;
+	}
 }
