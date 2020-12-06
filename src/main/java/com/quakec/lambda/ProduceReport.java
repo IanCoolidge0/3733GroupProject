@@ -31,14 +31,13 @@ public class ProduceReport implements RequestHandler<ProduceReportRequest, Produ
         // Get the object from the event and show its content type
         ProduceReportResponse response;
 
-        int i;
-        List<Choice> choices = getChoices();
-        List<String> choiceNames = new ArrayList<String>();
-        List<String> ids = new ArrayList<String>();
-        List<String> dates = new ArrayList<String>();
-        List<Boolean> completed = new ArrayList<Boolean>();
-
         try {
+            int i;
+            List<Choice> choices = getChoices();
+            List<String> choiceNames = new ArrayList<String>();
+            List<String> ids = new ArrayList<String>();
+            List<String> dates = new ArrayList<String>();
+            List<Boolean> completed = new ArrayList<Boolean>();
             Choice currentChoice;
             for (i = 0; i < choices.size(); i++) {
                 currentChoice = choices.get(i);
