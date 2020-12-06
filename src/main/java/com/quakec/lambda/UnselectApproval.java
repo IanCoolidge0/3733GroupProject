@@ -37,10 +37,9 @@ public class UnselectApproval implements RequestHandler<UnselectApprovalRequest,
         		Approval existingApproval = approvalDAO.tryGetExistingApproval(req.getAlternativeId(), req.getName());
         		
         		if(existingApproval != null) {
-        			approvalDAO.updateApproval(existingApproval, true);
+        			approvalDAO.deleteApproval(existingApproval.getId());
         		} else {
-	        		Approval approval = new Approval(req.getAlternativeId(), req.getMemberId(), req.getName(), true);
-	        		approvalDAO.addApproval(approval);
+        			response = new UnselectApprovalResponse(400, "Approval not found for given user: " + req.getName());
         		}
         		
         		response = new UnselectApprovalResponse(200);
