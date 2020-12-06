@@ -3,12 +3,15 @@ package com.quakec.model;
 import java.util.UUID;
 
 public class Approval {
-	public final String id;
-	public final String alternativeId;
-	public final String memberId;
-	public final String memberName;
+	public String id;
+	public String alternativeId;
+	public String memberId;
+	public String memberName;
 	boolean isApproval;
 	
+	public Approval() {
+		
+	}
 	
 
 	public Approval(String alternativeId, String memberId, String memberName, boolean isApproval) {
@@ -33,5 +36,15 @@ public class Approval {
 	
 	public boolean getIsApproval() {return isApproval;}
 	public void setApproval(boolean isApproval) {this.isApproval = isApproval;}
+	
+	public void setId(String id) {this.id = id;}
+	
+	public void setAlternativeId(String id) {this.alternativeId = id;}
+	
+	public void setMemberId(String id) {this.memberId = id;}
+	
+	public void setMemberName(String name) {this.memberName = name;}
+	
+	public void setIsApproval(boolean isApproval) {this.isApproval = isApproval;} 
 
 }
