@@ -27,7 +27,7 @@ public class ProduceReportResponse {
         return this.choiceNames;
     }
 
-    public List<String> getDatess() {
+    public List<String> getDates() {
         return this.dates;
     }
 
