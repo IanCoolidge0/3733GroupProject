@@ -1,14 +1,19 @@
 package com.quakec.http;
 
 public class ViewChoicesRequest {
-	String id;
+	String choiceId;
+	String memberId;
 	
-	public String getId() {return id;}
+	public String getChoiceId() {return choiceId;}
 	
-	public void setId(String id) {this.id=id;}
+	public void setChoiceId(String choiceId) {this.choiceId=choiceId;}
+	
+	public String getMemberId() {return memberId;}
+	
+	public void setMemberId(String memberId) {this.memberId=memberId;}
 	
 	public String toString() {
-		String s = "ViewChoice( " + id;
+		String s = "ViewChoice( " + choiceId + ", " + memberId + ")";
 		return s;
 	}
 	
@@ -16,8 +21,9 @@ public class ViewChoicesRequest {
 		
 	}
 	
-	public ViewChoicesRequest(String id) {
-		this.id = id;
+	public ViewChoicesRequest(String choiceId, String memberId) {
+		this.choiceId = choiceId;
+		this.memberId = memberId;
 	}
 	
 	
