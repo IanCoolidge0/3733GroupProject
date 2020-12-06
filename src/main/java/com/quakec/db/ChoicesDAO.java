@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.quakec.model.Choice;
