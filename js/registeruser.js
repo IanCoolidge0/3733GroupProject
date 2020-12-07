@@ -34,6 +34,6 @@ function handleRegisterMemberClick(e) {
 		}
 		
 		var res = JSON.parse(xhr.responseText);
-		window.location.replace("https://3733quakec.s3.us-east-2.amazonaws.com/presentations/approvallandingpage.html?"+res["memberId"]+res["choiceId"]);
+		window.location.replace("https://3733quakec.s3.us-east-2.amazonaws.com/presentations/approvallandingpage.html?"+res["choiceId"]+res["memberId"]);
 	}
 }

@@ -37,7 +37,7 @@ public class MembersDAO {
     public Member getMember(String id) throws Exception {
     	try {
     		Member member = null;
-    		PreparedStatement ps = conn.prepareStatement("SELECT* FROM " + tblName + " WHERE id=?;");
+    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE id=?;");
     		ps.setString(1, id);
     		ResultSet resultSet = ps.executeQuery();
     		

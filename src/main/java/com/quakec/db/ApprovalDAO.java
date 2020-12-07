@@ -133,12 +133,12 @@ public class ApprovalDAO {
 		return approvals;
 	}
 
-	public Approval tryGetExistingApproval(String alternativeId, String name) throws SQLException {
+	public Approval tryGetExistingApproval(String alternativeId, String memberId) throws SQLException {
 		Approval app = null;
 		
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE alternativeId=? AND memberName=?;");
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE alternativeId=? AND memberId=?;");
 		ps.setString(1, alternativeId);
-		ps.setString(2, name);
+		ps.setString(2, memberId);
 		
 		ResultSet resultSet = ps.executeQuery();
 		

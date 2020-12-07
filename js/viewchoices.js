@@ -27,7 +27,7 @@ function handlePageLoad() {
 		var j;
 		
 		var size = response["alternatives"].length;
-		for(i = 0; i < size; i++) {
+		for(i = 1; i < size + 1; i++) {
 			for(j = 0; j < size; j++) {
 				if(response["alternatives"][j].number === i) {
 					document.getElementById("alt" + i).innerHTML = response["alternatives"][j].name;
@@ -37,24 +37,24 @@ function handlePageLoad() {
 		}
 		
 		var allApprovals = [];
-		for(j = 0; j < size; j++) allApprovals[j] = [];
+		for(j = 1; j < size + 1; j++) allApprovals[j] = [];
 		var allDisapprovals = [];
-		for(j = 0; j < size; j++) allDisapprovals[j] = [];
+		for(j = 1; j < size + 1; j++) allDisapprovals[j] = [];
 		
 		var appSize = response["approvals"].length;
 		for(i = 0; i < appSize; i++) {
 			for(j = 0; j < size; j++) {
 				if(response["approvals"][i]["alternativeId"] === response["alternatives"][j]["id"]) {
 					if(response["approvals"][i]["isApproval"]) {
-						allApprovals[j].push(response["approvals"][i]["memberName"]);
+						allApprovals[response["alternatives"][j]["number"]].push(response["approvals"][i]["memberName"]);
 					} else {
-						allDisapprovals[j].push(response["approvals"][i]["memberName"]);
+						allDisapprovals[response["alternatives"][j]["number"]].push(response["approvals"][i]["memberName"]);
 					}
 				}
 			}
 		}
 		
-		for(j = 0; j < size; j++) {
+		for(j = 1; j < size + 1; j++) {
 			var pTag = document.getElementById("alt" + j + "app");
 			
 			if(allApprovals[j].length > 0) {
@@ -79,15 +79,19 @@ function handlePageLoad() {
 function handleApproval(altNumber, isApproval) {
 	var data = {};
 	data["memberId"] = window.myMemberId;
+	data["name"] = ""; // obsolete
 	var i;
+	var response = window.lastViewResponse;
 	for(i = 0; i < response["alternatives"].length; i++) {
-		if(response["alternatives"][i]["number"] == altNumber) {
+		if(response["alternatives"][i]["number"] === altNumber) {
 			data["alternativeId"] = response["alternatives"][i]["id"];
 			break;
 		}
 	}
 	
 	var js = JSON.stringify(data);
+	console.log("approval data: ");
+	console.log(data);
 	
 	var xhr = new XMLHttpRequest();
 	if(isApproval)
@@ -106,6 +110,6 @@ function handleApproval(altNumber, isApproval) {
 			console.log("XHR: " + xhr.responseText);
 		}
 		
-		window.location.reload();
+		//window.location.reload();
 	}
 }

@@ -2,8 +2,8 @@
   <head>
     <script>
     function replaceDefaultMemberId() {
-      window.myMemberId = window.location.href.substring(78, 78 + 36);
-      window.myChoiceId = window.location.href.substring(78 + 36);
+      window.myMemberId = window.location.href.substring(85 + 36);
+      window.myChoiceId = window.location.href.substring(85, 85 + 36);
     }
     window.onload = function() {
     	replaceDefaultMemberId();
@@ -36,7 +36,7 @@
     <form name="choiceApprovalForm" method="post">
       <div id="inputs">
         <label for="lchoice" id="choiceName">Choice:</label>	<br />
-        <label for="lchoice" id="choiceDesc">Description</label>
+        <label for="lchoice" id="choiceDesc">Description</label> <br />
       	<label for="lname" id="alt1">Alternative 1</label> <input type="button" value="Approve" onClick="handleApproval(1, true);" />  <input type="button" value="Disapprove" onClick="handleApproval(1, false);" />  <br />
        	<p id="alt1app"></p><br />
        	<label for="lname" id="alt2">Alternative 2</label> <input type="button" value="Approve" onClick="handleApproval(2, true);" /> <input type="button" value="Disapprove" onClick="handleApproval(2, false);" /> <br />
