@@ -1,42 +1,26 @@
 package com.quakec.http;
 
+import com.quakec.model.Choice;
+
 import java.util.List;
 
 public class ProduceReportResponse {
 
     public int statusCode;
     public String errMessage;
-    private List<String> choiceNames;
-    private List<String> ids;
-    private List<String> dates;
-    private List<Boolean> completed;
+    private List<Choice> choices;
 
     public ProduceReportResponse (int statusCode, String errMessage) {
         this.statusCode = statusCode;
         this.errMessage = errMessage;
     }
-    public ProduceReportResponse (List<String> choiceNames, List<String> ids, List<String> dates, List<Boolean> completed) {
+    public ProduceReportResponse (List<Choice> choices) {
         this.statusCode = 200;
-        this.choiceNames = choiceNames;
-        this.ids = ids;
-        this.dates = dates;
-        this.completed = completed;
+        this.choices = choices;
     }
 
-    public List<String> getChoiceNames() {
-        return this.choiceNames;
-    }
-
-    public List<String> getDatess() {
-        return this.dates;
-    }
-
-    public List<String> getIds() {
-        return this.ids;
-    }
-
-    public List<Boolean> getCompleted() {
-        return this.completed;
+    public List<Choice> getChoices() {
+        return this.choices;
     }
 
     public String toString() {
