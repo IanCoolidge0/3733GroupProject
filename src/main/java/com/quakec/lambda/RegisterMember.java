@@ -30,13 +30,14 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     
 
     
-    boolean createMember(String choiceId, String name, String password, Context context) throws Exception { 
+    String createMember(String choiceId, String name, String password, Context context) throws Exception { 
     	if (logger != null) { logger.log("in createMember"); }
     	MembersDAO dao = new MembersDAO();
     	
     	Member m = new Member (choiceId, name, password);
-    	return dao.addMember(m);
-    	
+    	if(dao.addMember(m))
+    		return m.getId();
+    	else return null;
     }
 
     
@@ -46,8 +47,9 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     	context.getLogger().log("Received event: " + req);
         RegisterMemberResponse response;
         try {
-        	if(createMember(req.getChoiceId(),req.getName(),req.getPassword(),context)) {
-        		response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId());		
+        	String newId = createMember(req.getChoiceId(),req.getName(),req.getPassword(),context);
+        	if(newId != null) {
+        		response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId(), newId);		
         	} else {
         		response = new RegisterMemberResponse(req.getName(), 422);
         	}
