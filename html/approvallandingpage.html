@@ -2,7 +2,8 @@
   <head>
     <script>
     function replaceDefaultMemberId() {
-      window.myMemberId = window.location.href.substring(78);
+      window.myMemberId = window.location.href.substring(78, 78 + 36);
+      window.myChoiceId = window.location.href.substring(78 + 36);
     }
     window.onload = function() {
     	replaceDefaultMemberId();

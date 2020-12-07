@@ -2,7 +2,7 @@ function handlePageLoad() {
 	
 	var data = {};
 	data["memberId"] = window.myMemberId;
-	data["choiceId"]
+	data["choiceId"] = window.myChoiceId;
 	
 	var js = JSON.stringify(data);
 	
@@ -71,9 +71,41 @@ function handlePageLoad() {
 				}
 			}
 		}
+		
+		window.lastViewResponse = response;
 	}
 }
 
 function handleApproval(altNumber, isApproval) {
+	var data = {};
+	data["memberId"] = window.myMemberId;
+	var i;
+	for(i = 0; i < response["alternatives"].length; i++) {
+		if(response["alternatives"][i]["number"] == altNumber) {
+			data["alternativeId"] = response["alternatives"][i]["id"];
+			break;
+		}
+	}
 	
+	var js = JSON.stringify(data);
+	
+	var xhr = new XMLHttpRequest();
+	if(isApproval)
+		xhr.open("POST", selectapproval_url, true);
+	else
+		xhr.open("POST", selectdisapproval_url, true);
+	
+	xhr.send(js);
+
+	// This will process results and update HTML as appropriate.
+	xhr.onloadend = function () {
+		console.log(xhr);
+		console.log(xhr.request);
+
+		if(xhr.readyState == XMLHttpRequest.DONE) {
+			console.log("XHR: " + xhr.responseText);
+		}
+		
+		window.location.reload();
+	}
 }
