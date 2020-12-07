@@ -110,6 +110,6 @@ function handleApproval(altNumber, isApproval) {
 			console.log("XHR: " + xhr.responseText);
 		}
 		
-		//window.location.reload();
+		window.location.reload();
 	}
 }
