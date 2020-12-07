@@ -33,7 +33,6 @@ public class ProduceReport implements RequestHandler<ProduceReportRequest, Produ
 
         try {
             List<Choice> choices = getChoices();
-
             List<String> choiceNames = new ArrayList<String>();
             List<String> ids = new ArrayList<String>();
             List<String> dates = new ArrayList<String>();

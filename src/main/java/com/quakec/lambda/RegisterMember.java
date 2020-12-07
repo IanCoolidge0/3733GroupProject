@@ -49,7 +49,7 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
         try {
         	String newId = createMember(req.getChoiceId(),req.getName(),req.getPassword(),context);
         	if(newId != null) {
-        		response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId(), newId);		
+        		response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId(), newId,req.getChoiceId());		
         	} else {
         		response = new RegisterMemberResponse(req.getName(), 422);
         	}

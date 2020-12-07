@@ -5,17 +5,20 @@ public class RegisterMemberResponse {
 	public final int httpCode;
 	
 	public String memberId;
+	public String choiceId;
 			
-	public RegisterMemberResponse (String s, int c, String m) {
+	public RegisterMemberResponse (String s, int c, String m, String choiceId) {
 		this.response = s;
 		this.httpCode = c;
 		this.memberId = m;
+		this.choiceId = choiceId;
 	}
 	
-	public RegisterMemberResponse (String s, String m) {
+	public RegisterMemberResponse (String s, String m, String choiceId) {
 		this.response = s;
 		this.httpCode = 200;
 		this.memberId = m;
+		this.choiceId= choiceId;
 	}
 	
 	public RegisterMemberResponse(String s, int c) {
@@ -30,6 +33,14 @@ public class RegisterMemberResponse {
 
 	public String getMemberId() {
 		return memberId;
+	}
+	
+	public String getChoiceId() {
+		return choiceId;
+	}
+	
+	public void setChoiceId(String choiceId) {
+		this.choiceId =  choiceId;
 	}
 
 	public void setMemberId(String memberId) {
