@@ -32,22 +32,8 @@ public class ProduceReport implements RequestHandler<ProduceReportRequest, Produ
         ProduceReportResponse response;
 
         try {
-            int i;
             List<Choice> choices = getChoices();
-            List<String> choiceNames = new ArrayList<String>();
-            List<String> ids = new ArrayList<String>();
-            List<String> dates = new ArrayList<String>();
-            List<Boolean> completed = new ArrayList<Boolean>();
-            Choice currentChoice;
-            for (i = 0; i < choices.size(); i++) {
-                currentChoice = choices.get(i);
-                choiceNames.add(currentChoice.getName());
-                ids.add(currentChoice.getId());
-                dates.add(currentChoice.getDatetime().toString());
-                //TODO make this add completed state of choice
-                completed.add(currentChoice.getHasChosenAlternative());
-            }
-            response = new ProduceReportResponse(choiceNames, ids, dates, completed);
+            response = new ProduceReportResponse(choices);
         } catch (Exception e) {
             e.printStackTrace();
             response = new ProduceReportResponse(403, e.getMessage());
