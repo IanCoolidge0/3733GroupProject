@@ -15,6 +15,7 @@ function handleCreateChoiceClick(e) {
 	var data = {};
 	data["title"] = name;
 	data["description"] = description;
+	data["memberCount"] = numParticipants;
 	data["alternatives"] = [];
 	
 	data["alternatives"].push(alt1);

@@ -13,14 +13,7 @@ import com.quakec.model.Member;
 
 public class SelectApproval implements RequestHandler<SelectApprovalRequest, SelectApprovalResponse> {
 
-    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
-
     public SelectApproval() {}
-
-    // Test purpose only.
-    SelectApproval(AmazonS3 s3) {
-        this.s3 = s3;
-    }
 
     @Override
     public SelectApprovalResponse handleRequest(SelectApprovalRequest req, Context context) {
@@ -31,7 +24,7 @@ public class SelectApproval implements RequestHandler<SelectApprovalRequest, Sel
     	ApprovalDAO approvalDAO = new ApprovalDAO();
     	
         try {
-        	Member member = membersDAO.getMember(req.getName());
+        	Member member = membersDAO.getMember(req.getMemberId());
         	if(member != null) {
         		Approval existingApproval = approvalDAO.tryGetExistingApproval(req.getAlternativeId(), req.getName());
         		

@@ -3,15 +3,12 @@ package com.quakec.model;
 import java.util.UUID;
 
 public class Member {
-	public String id;
-	public String choiceId;
-	public String name;
-	public String password;
-	public boolean hasPassword;
+	public final String id;
+	public final String choiceId;
+	public final String name;
+	public final String password;
+	public final boolean hasPassword;
 	
-	public Member() {
-		
-	}
 	
 	public Member(String choiceId,String name, String password) {
 		this.id = UUID.randomUUID().toString();
@@ -43,11 +40,5 @@ public class Member {
 	public String getPassword() {return password;}
 	
 	public boolean getHasPassword() {return hasPassword;}
-	
-	public void setId(String id) {this.id = id;}
-	public void setChoiceId(String id) {this.choiceId = id;}
-	public void setName(String name) {this.name = name;}
-	public void setPassword(String password) {this.password = password;}
-	public void setHasPassword(boolean hasPassword) {this.hasPassword = hasPassword;}
 		
 }

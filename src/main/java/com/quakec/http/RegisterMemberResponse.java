@@ -3,8 +3,7 @@ package com.quakec.http;
 public class RegisterMemberResponse {
 	public final String response;
 	public final int httpCode;
-	
-	
+			
 	public RegisterMemberResponse (String s, int c) {
 		this.response = s;
 		this.httpCode = c;

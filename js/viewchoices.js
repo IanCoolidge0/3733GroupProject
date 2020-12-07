@@ -1,7 +1,7 @@
 function handlePageLoad() {
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", viewchoices_url, true);
+	xhr.open("POST", viewchoices_url, true);
 	
 	xhr.send(js);
 

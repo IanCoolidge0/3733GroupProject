@@ -66,7 +66,7 @@ public class ApprovalDAO {
 	}
 	
 	public boolean addApproval(Approval approval) throws Exception {
-		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id,alternativeId,memberId, memberName,isApproval) values(?,?,?,?);");
+		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id,alternativeId,memberId,memberName,isApproval) values(?,?,?,?,?);");
 		
 		ps.setString(1, approval.getId());
 		ps.setString(2, approval.getAlternativeId());

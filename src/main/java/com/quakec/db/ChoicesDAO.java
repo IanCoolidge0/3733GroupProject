@@ -29,7 +29,7 @@ public class ChoicesDAO {
     }
     
     public boolean createChoice(Choice choice, Context ctx) throws SQLException {
-    	PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,description,dateCreated,memberCount,hasChosenAlternative,id) values(?,?,?,?,?,?);");
+    	PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,description,datetime,memberCount,hasChosenAlternative,id) values(?,?,?,?,?,?);");
     	
     	ps.setString(1, choice.getName());
     	ps.setString(2, choice.getDescription());
@@ -37,8 +37,12 @@ public class ChoicesDAO {
     	ps.setInt(4, choice.getMemberCount());
     	ps.setBoolean(5, choice.getHasChosenAlternative());
     	ps.setString(6, choice.getId());
-    	
-    	return ps.execute();
+    	try {
+    		return ps.execute();
+    	} catch(Exception e) {
+    		ctx.getLogger().log("error was " + e.getMessage());
+    		return false;
+    	}
     }
     
    
