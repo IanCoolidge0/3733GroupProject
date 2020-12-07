@@ -47,7 +47,7 @@ public class ProduceReport implements RequestHandler<ProduceReportRequest, Produ
                 //TODO make this add completed state of choice
                 completed.add(currentChoice.getHasChosenAlternative());
             }
-            response = new ProduceReportResponse(choiceNames, ids, dates, completed);
+            response = new ProduceReportResponse(choices);
         } catch (Exception e) {
             e.printStackTrace();
             response = new ProduceReportResponse(403, e.getMessage());
