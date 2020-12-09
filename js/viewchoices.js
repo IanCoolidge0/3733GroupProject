@@ -72,6 +72,15 @@ function handlePageLoad() {
 			}
 		}
 		
+		// make extra alternatives invisible
+		for(j = size + 1; j <= 5; j++) {
+			console.log("here for j = " + j);
+			document.getElementById("alt" + j).style.display = "none";
+			document.getElementById("app" + j).style.display = "none";
+			document.getElementById("dis" + j).style.display = "none";
+			document.getElementById("alt" + j + "app").style.display = "none";
+		}
+		
 		window.lastViewResponse = response;
 	}
 }
