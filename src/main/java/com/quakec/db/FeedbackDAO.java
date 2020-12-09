@@ -132,6 +132,11 @@ public class FeedbackDAO {
 		return feedback;
 	}
 
+	public Feedback getFeedback(String memberId, String alternativeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }
