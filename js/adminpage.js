@@ -4,28 +4,35 @@ function processListResponse(result) {
     var js = JSON.parse(result);
     var choiceData = document.getElementById('jsonData');
 
-    var output = "<br/>";
+    var tableData = "<br/><table><tr><th>Choice</th><th>ID</th><th>Creation Date</th><th>Completed</th></tr>";
 
-    for (var i = 0; i < js.list.length; i++) {
-        var choiceJson = js.list[i];
-        //console.log(choiceJson);
+    for (var i = 0; i < js["choices"].length; i++) {
+
+        var choiceJson = js["choices"][i];
 
         var choiceName = choiceJson["name"];
         var choiceId = choiceJson["id"];
+        var date = choiceJson["datetime"]
+        var formattedDate = new Date(date);
         var completed = choiceJson["hasChosenAlternative"];
 
         if (completed) {
-            completed = "completed";
+            completed = "COMPLETED";
         } else {
-            completed = "not completed";
+            completed = "NOT COMPLETED";
         }
 
-        output = output + "<div id=\"choice" + choiceName + "\"><b>" + choiceName + ":</b>  " + choiceId + " " + completed + "</b>  " + "<br></div>";
+        tableData += "<tr>";
+        tableData += "<td>" + choiceName + "</td>";
+        tableData += "<td>" + choiceId + "</td>";
+        tableData += "<td>" + formattedDate.toString() + "</td>";
+        tableData += "<td>" + completed + "</td>";
+        tableData += "</tr>";
     }
 
-    output = output + "<br/>";
+    tableData += "</table><br/>";
     // Update computation result
-    choiceData.innerHTML = output;
+    choiceData.innerHTML = tableData;
 }
 
 function handleGenerateReportClick(e) {
@@ -39,5 +46,3 @@ function handleGenerateReportClick(e) {
     xhttp.open("GET", adminlandingpage_url, true);
     xhttp.send();
 }
-
-
