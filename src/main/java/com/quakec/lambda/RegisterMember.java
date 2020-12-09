@@ -30,7 +30,7 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     
 
     
-    String createMember(String choiceId, String name, String password, Context context) throws Exception { 
+    private String createMember(String choiceId, String name, String password, Context context) throws Exception { 
     	if (logger != null) { logger.log("in createMember"); }
     	MembersDAO dao = new MembersDAO();
     	

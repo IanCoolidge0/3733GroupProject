@@ -2,13 +2,17 @@ package com.quakec.lambda;
 
 import java.io.IOException;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.google.gson.Gson;
+
+
 import com.quakec.http.CreateChoiceRequest;
 import com.quakec.http.CreateChoiceResponse;
+
 
 public class CreateChoiceTest {
 	
@@ -33,7 +37,7 @@ public class CreateChoiceTest {
 
 		CreateChoiceResponse response = createChoice.handleRequest(req, createContext("compute"));
 
-		Assert.assertEquals(400, response.statusCode);
+		Assert.assertTrue(response.statusCode != 200);
 	}
 	
 	@Test
@@ -47,7 +51,19 @@ public class CreateChoiceTest {
 			Assert.fail("Invalid:" + ioe.getMessage());
 		}
 	}
+	
+	@Test
+	public void testCreateChoiceFailInput() {
+		String SAMPLE_INPUT_STRING = "{\"title\": \"Project\", \"description\": \"project description\", \"alternatives\": [\"Project 1\",\"Project 2\",\"Project 3\"],\"id\": \"21111111-1121-1111-1111-111111121111\",\"memberCount\": \"hie\"}";
+		String RESULT = "";
+
+		try {
+			testFailInput(SAMPLE_INPUT_STRING, RESULT);
+		} catch (IOException ioe) {
+			Assert.fail("Invalid:" + ioe.getMessage());
+		}
+	}
+	
 
 }
-
 
