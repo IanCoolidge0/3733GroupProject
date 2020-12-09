@@ -3,6 +3,8 @@
   <head>
     <link rel="stylesheet" href="https://3733quakec.s3.us-east-2.amazonaws.com/presentations/css/adminstyling.css">
     <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/65/wine-glass_1f377.png">
+    <script type="text/javascript" src="../js/api.js"></script>
+    <script type="text/javascript" src="../js/adminpage.js"></script>
   </head>
   <body>
     <section id="header">
@@ -19,16 +21,16 @@
     </section>
     <br />
     <section id="content">
-      <form name="generateReportForm" method="post">
+      <!--<form name="generateReportForm" method="post">-->
         <h1>Administrator</h1>
-        <p>
-          <button class="button button1">Generate Report</button>
+          <button class="button button1" onClick="handleGenerateReportClick(this)">Generate Report</button>
           <br />
+        <div id="jsonData" value="${userJsonList}">
         <p>
-          Report would appear here on button press
         <br>
         </p>
-      </form>
+        </div>
+      <!--</form>-->
       <label>Delete Choices:</label>
       <input name="numdays" type="text" placeholder="# days old"/>
       <br />
