@@ -3,11 +3,7 @@ package com.quakec.lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.lambda.runtime.events.S3Event;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import com.quakec.db.MembersDAO;
 import com.quakec.http.RegisterMemberRequest;
 import com.quakec.http.RegisterMemberResponse;
@@ -30,14 +26,15 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     
 
     
-    private String createMember(String choiceId, String name, String password, Context context) throws Exception { 
+    private Pair<String, Boolean> createMember(String choiceId, String name, String password, Context context) throws Exception { 
     	if (logger != null) { logger.log("in createMember"); }
     	MembersDAO dao = new MembersDAO();
     	
     	Member m = new Member (choiceId, name, password);
-    	if(dao.addMember(m))
-    		return m.getId();
-    	else return null;
+    	String result = dao.addMember(m);
+    	if(result.equals(""))
+    		return new Pair<String, Boolean>(m.getId(), true);
+    	else return new Pair<String, Boolean>(result, false);
     }
 
     
@@ -47,11 +44,11 @@ public class RegisterMember implements RequestHandler<RegisterMemberRequest,Regi
     	context.getLogger().log("Received event: " + req);
         RegisterMemberResponse response;
         try {
-        	String newId = createMember(req.getChoiceId(),req.getName(),req.getPassword(),context);
-        	if(newId != null) {
-        		response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId(), newId,req.getChoiceId());		
+        	Pair<String, Boolean> newId = createMember(req.getChoiceId(),req.getName(),req.getPassword(),context);
+        	if(newId.right) {
+        		response = new RegisterMemberResponse(req.getName()+" registered to "+req.getChoiceId(), newId.left,req.getChoiceId());		
         	} else {
-        		response = new RegisterMemberResponse(req.getName(), 422);
+        		response = new RegisterMemberResponse(newId.left, 422);
         	}
         } catch (Exception e) {
         	response = new RegisterMemberResponse("Unable to register user: " + req.getName() + "(" +  e.getMessage()+")",400);

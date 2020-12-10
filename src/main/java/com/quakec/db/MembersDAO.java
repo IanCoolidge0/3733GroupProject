@@ -120,28 +120,26 @@ public class MembersDAO {
 //    	}
     }
     
-    public boolean addMember(Member member) throws Exception {
+    public String addMember(Member member) throws Exception {
 //        try {
         	ChoicesDAO choiceDAO = new ChoicesDAO();
         	Choice c = choiceDAO.getChoice(member.getChoiceId());
-        	int memberCountMax = c.getMemberCount();
-        	if(getMembersWithChoiceId(member.getChoiceId()).size() >= memberCountMax) {
-        		return false;
-        	}
         	
         	List<Member> membersWithName = getMembersWithName(member.getName());
-        	if(membersWithName.size() > 0) {
-        		if(!member.getHasPassword()) {
-        			return false;
-        		}
-        	}
+        	
         	for(Member m : membersWithName) {
         		if(m.getChoiceId().equals(member.getChoiceId())) {
-        			return false;
+        			if(!m.getHasPassword() || m.getPassword().equals(member.getPassword())) {
+        				return "";
+        			} else {
+        				return "Incorrect password for member.";
+        			}
         		}
-        		if(m.getHasPassword() && m.getPassword().equals(member.getPassword())) {
-        			return false;
-        		}
+        	}
+        	
+        	int memberCountMax = c.getMemberCount();
+        	if(getMembersWithChoiceId(member.getChoiceId()).size() >= memberCountMax) {
+        		return "Sorry, this choice is at its membership limit.";
         	}
         	
             PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id, choiceId, name,password,hasPassword) values(?,?,?,?,?);");
@@ -151,7 +149,7 @@ public class MembersDAO {
             ps.setString(4,  member.getPassword());
             ps.setBoolean(5,  member.getHasPassword());
             ps.execute();
-            return true;
+            return "";
 
 //        } catch (Exception e) {
 //            throw new Exception("Failed add member: " + e.getMessage());
