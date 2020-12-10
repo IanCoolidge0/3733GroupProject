@@ -105,13 +105,7 @@ function handlePageLoad() {
 		
 		// make extra alternatives invisible
 		for(j = size + 1; j <= 5; j++) {
-			console.log("here for j = " + j);
-			document.getElementById("alt" + j).style.display = "none";
-			document.getElementById("app" + j).style.display = "none";
-			document.getElementById("dis" + j).style.display = "none";
-			document.getElementById("alt" + j + "app").style.display = "none";
-			document.getElementById("feed" + j).style.display = "none";
-			document.getElementById("alt" + j + "feed").style.display = "none";
+			document.getElementById("region" + j).style.display = "none";
 		}
 		
 		// finally, highlight a section in yellow IF it is the selected alternative of a completed choice

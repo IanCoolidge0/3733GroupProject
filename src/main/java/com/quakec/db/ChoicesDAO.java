@@ -106,7 +106,7 @@ public class ChoicesDAO {
 	public boolean completeChoice(String choiceId, String alternativeId) throws Exception {
 		AlternativesDAO alternativesDAO = new AlternativesDAO();
 		
-		if(alternativesDAO.getAlternative(alternativeId).choiceId == choiceId) { // is the alternative actually part of the choice??
+		if(alternativesDAO.getAlternative(alternativeId).getChoiceId().equals(choiceId)) { // is the alternative actually part of the choice??
 			PreparedStatement ps = conn.prepareStatement("UPDATE " + tblName + " SET chosenAlternative=? WHERE id=?;");
 			ps.setString(1, alternativeId);
 			ps.setString(2, choiceId);
@@ -116,7 +116,7 @@ public class ChoicesDAO {
 			
 			return result;
 		}
-		
+
 		// it's not, return false. something went wrong
 		return false;
 	}
