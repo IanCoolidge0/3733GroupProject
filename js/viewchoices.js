@@ -259,7 +259,7 @@ function selectAlternative(altNumber) {
 				alert("Sorry, this choice has already been completed.");
 			}
 			
-			//window.location.reload();
+			window.location.reload();
 		}
 	}
 }
