@@ -20,8 +20,8 @@ function handlePageLoad() {
 			console.log("XHR: " + xhr.responseText);
 		}
 		var response = JSON.parse(xhr.responseText);
-		document.getElementById("choiceName").innerHTML = "<p style="text-align:center;">" + response["choice"]["name"] + "</p>";
-		document.getElementById("choiceDesc").innerHTML = "<p style="text-align:center;">" + response["choice"]["description"] + "</p>";
+		document.getElementById("choiceName").innerHTML = '<p style="text-align:center;">' + response["choice"]["name"] + "</p>";
+		document.getElementById("choiceDesc").innerHTML = '<p style="text-align:center;">' + response["choice"]["description"] + "</p>";
 		
 		var i;
 		var j;
@@ -59,16 +59,18 @@ function handlePageLoad() {
 			
 			if(allApprovals[j].length > 0) {
 				pTag.innerHTML = "Approvals: ";
-				for(i = 0; i < allApprovals[j].length; i++) {
+				for(i = 0; i < allApprovals[j].length - 1; i++) {
 					pTag.innerHTML += allApprovals[j][i] + ", ";
 				}
+				pTag.innerHTML += allApprovals[j][allApprovals[j].length - 1];
 			}
 			
 			if(allDisapprovals[j].length > 0) {
-				pTag.innerHTML += "  Disapprovals: ";
-				for(i = 0; i < allDisapprovals[j].length; i++) {
+				pTag.innerHTML += "Disapprovals: ";
+				for(i = 0; i < allDisapprovals[j].length - 1; i++) {
 					pTag.innerHTML += allDisapprovals[j][i] + ", ";
 				}
+				pTag.innerHTML += allDisapprovals[j][allDisapprovals[j].length - 1];
 			}
 		}
 		
