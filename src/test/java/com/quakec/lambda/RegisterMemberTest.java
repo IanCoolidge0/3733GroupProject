@@ -37,18 +37,18 @@ public class RegisterMemberTest {
 //		Assert.assertTrue(response.httpCode != 200);
 //	}
 	
-	@Test
-	public void testRegisterMemberSuccess() {
-		
-		String SAMPLE_INPUT_STRING = "{\"choiceId\": \"11111111-1111-1111-1111-111111111111\", \"name\": \"Ray\",\"password\": \"\"}";
-		String RESULT = "Ray registered to 11111111-1111-1111-1111-111111111111";
-
-		try {
-			testInput(SAMPLE_INPUT_STRING, RESULT);
-		} catch (IOException ioe) {
-			Assert.fail("Invalid:" + ioe.getMessage());
-		}
-	}
+//	@Test
+//	public void testRegisterMemberSuccess() {
+//		
+//		String SAMPLE_INPUT_STRING = "{\"choiceId\": \"11111111-1111-1111-1111-111111111111\", \"name\": \"Ray\",\"password\": \"\"}";
+//		String RESULT = "Ray registered to 11111111-1111-1111-1111-111111111111";
+//
+//		try {
+//			testInput(SAMPLE_INPUT_STRING, RESULT);
+//		} catch (IOException ioe) {
+//			Assert.fail("Invalid:" + ioe.getMessage());
+//		}
+//	}
 
 }
 

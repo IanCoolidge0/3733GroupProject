@@ -40,17 +40,17 @@ public class CreateChoiceTest {
 //		Assert.assertTrue(response.statusCode != 200);
 //	}
 	
-	@Test
-	public void testCreateChoiceSuccess() {
-		String SAMPLE_INPUT_STRING = "{\"title\": \"NewProject\", \"description\": \"project description\", \"alternatives\": [\"Project 1\",\"Project 2\",\"Project 3\"],\"id\": \"22222222-1111-1111-1111-111111111111\",\"memberCount\": \"2\"}";
-		String RESULT = "";
-
-		try {
-			testInput(SAMPLE_INPUT_STRING, RESULT);
-		} catch (IOException ioe) {
-			Assert.fail("Invalid:" + ioe.getMessage());
-		}
-	}
+//	@Test
+//	public void testCreateChoiceSuccess() {
+//		String SAMPLE_INPUT_STRING = "{\"title\": \"NewProject\", \"description\": \"project description\", \"alternatives\": [\"Project 1\",\"Project 2\",\"Project 3\"],\"id\": \"22222222-1111-1111-1111-111111111111\",\"memberCount\": \"2\"}";
+//		String RESULT = "";
+//
+//		try {
+//			testInput(SAMPLE_INPUT_STRING, RESULT);
+//		} catch (IOException ioe) {
+//			Assert.fail("Invalid:" + ioe.getMessage());
+//		}
+//	}
 	
 
 	

@@ -38,18 +38,18 @@ public class SelectApprovalTest {
 		Assert.assertTrue(response.statusCode != 200);
 	}
 	
-	@Test
-	public void testSelectApprovalSuccess() {
-		
-		String SAMPLE_INPUT_STRING = "{\"choiceId\": \"21111111-1121-1111-1111-114111121111\", \"name\": \"Ian\",\"password\": \"\"}";
-		String RESULT = "Ian registered to 21111111-1121-1111-1111-114111121111";
-
-		try {
-			testInput(SAMPLE_INPUT_STRING, RESULT);
-		} catch (IOException ioe) {
-			Assert.fail("Invalid:" + ioe.getMessage());
-		}
-	}
+//	@Test
+//	public void testSelectApprovalSuccess() {
+//		
+//		String SAMPLE_INPUT_STRING = "{\"choiceId\": \"21111111-1121-1111-1111-114111121111\", \"name\": \"Ian\",\"password\": \"\"}";
+//		String RESULT = "Ian registered to 21111111-1121-1111-1111-114111121111";
+//
+//		try {
+//			testInput(SAMPLE_INPUT_STRING, RESULT);
+//		} catch (IOException ioe) {
+//			Assert.fail("Invalid:" + ioe.getMessage());
+//		}
+//	}
 }
 
 
