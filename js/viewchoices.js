@@ -122,6 +122,16 @@ function handlePageLoad() {
 			document.getElementById("region" + j).style.background = "yellow";
 		}
 		
+		// if the choice is completed make all of the buttons disabled
+		if(selectedAlternative != "") {
+			for(j = 1; j < size + 1; j++) {
+				document.getElementById("app" + j).disabled = true;
+				document.getElementById("dis" + j).disabled = true;
+				document.getElementById("feed" + j).disabled = true;
+				document.getElementById("sel" + j).disabled = true;
+			}
+		}
+		
 		window.lastViewResponse = response;
 	}
 }
@@ -218,7 +228,7 @@ function selectAlternative(altNumber) {
 		}
 	}
 	
-	if(!confirm("Are you sure you want to choose alternative " + i + "?")) return;
+	if(!confirm("Are you sure you want to complete the choice?")) return;
 	
 	var js = JSON.stringify(data);
 	console.log("completechoice data:");
