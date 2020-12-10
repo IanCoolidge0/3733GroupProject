@@ -34,6 +34,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raymondcarter/Documents/WPI/3B-CS3733/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
