@@ -37,16 +37,21 @@
       <div id="inputs">
         <label for="lchoice" id="choiceName">Choice:</label>	<br />
         <label for="lchoice" id="choiceDesc">Description</label> <br />
-      	<label for="lname" id="alt1">Alternative 1</label> <input type="button" value="Approve" id="app1" onClick="handleApproval(1, true);" />  <input type="button" value="Disapprove" id="dis1" onClick="handleApproval(1, false);" />  <br />
+      	<label for="lname" id="alt1">Alternative 1</label> <input type="button" value="Approve" id="app1" onClick="handleApproval(1, true);" />  <input type="button" value="Disapprove" id="dis1" onClick="handleApproval(1, false);" /> <input type="button" value="Give Feedback" id="feed1" onClick="addFeedback(1);" />  <br />
        	<p id="alt1app"></p><br />
-       	<label for="lname" id="alt2">Alternative 2</label> <input type="button" value="Approve" id="app2" onClick="handleApproval(2, true);" /> <input type="button" value="Disapprove" id="dis2" onClick="handleApproval(2, false);" /> <br />
+       	<p id="alt1feed"></p><br />
+       	<label for="lname" id="alt2">Alternative 2</label> <input type="button" value="Approve" id="app2" onClick="handleApproval(2, true);" /> <input type="button" value="Disapprove" id="dis2" onClick="handleApproval(2, false);" /> <input type="button" value="Give Feedback" id="feed2" onClick="addFeedback(2);" /> <br />
        	<p id="alt2app"></p><br />
-       	<label for="lname" id="alt3">Alternative 3</label> <input type="button" value="Approve" id="app3" onClick="handleApproval(3, true);" />  <input type="button" value="Disapprove" id="dis3" onClick="handleApproval(3, false);" /> <br />
+       	<p id="alt2feed"></p><br />
+       	<label for="lname" id="alt3">Alternative 3</label> <input type="button" value="Approve" id="app3" onClick="handleApproval(3, true);" />  <input type="button" value="Disapprove" id="dis3" onClick="handleApproval(3, false);" /> <input type="button" value="Give Feedback" id="feed3" onClick="addFeedback(3);" /> <br />
        	<p id="alt3app"></p><br />
-       	<label for="lname" id="alt4">Alternative 4</label> <input type="button" value="Approve" id="app4" onClick="handleApproval(4, true);" />  <input type="button" value="Disapprove" id="dis4" onClick="handleApproval(4, false);" /> <br />
+       	<p id="alt3feed"></p><br />
+       	<label for="lname" id="alt4">Alternative 4</label> <input type="button" value="Approve" id="app4" onClick="handleApproval(4, true);" />  <input type="button" value="Disapprove" id="dis4" onClick="handleApproval(4, false);" /> <input type="button" value="Give Feedback" id="feed4" onClick="addFeedback(4);" /> <br />
        	<p id="alt4app"></p><br />
-       	<label for="lname" id="alt5">Alternative 5</label> <input type="button" value="Approve" id="app5" onClick="handleApproval(5, true);" />  <input type="button" value="Disapprove" id="dis5" onClick="handleApproval(5, false);" /> <br />
+       	<p id="alt4feed"></p><br />
+       	<label for="lname" id="alt5">Alternative 5</label> <input type="button" value="Approve" id="app5" onClick="handleApproval(5, true);" />  <input type="button" value="Disapprove" id="dis5" onClick="handleApproval(5, false);" /> <input type="button" value="Give Feedback" id="feed5" onClick="addFeedback(5);" /> <br />
       	<p id="alt5app"></p><br />
+      	<p id="alt5feed"></p><br />
       	<input type="button" class="button button1" value="Refresh" onClick="window.location.reload();" />
       </div>
      </form>
