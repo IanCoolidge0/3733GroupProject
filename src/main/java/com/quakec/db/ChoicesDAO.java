@@ -111,10 +111,10 @@ public class ChoicesDAO {
 			ps.setString(1, alternativeId);
 			ps.setString(2, choiceId);
 			
-			boolean result = ps.execute();
+			ps.execute();
 			ps.close();
 			
-			return result;
+			return true;
 		}
 
 		// it's not, return false. something went wrong

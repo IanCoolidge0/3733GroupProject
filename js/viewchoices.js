@@ -117,7 +117,7 @@ function handlePageLoad() {
 				if(response["alternatives"][j]["id"] === selectedAlternative) break;
 			}
 			
-			j++; // 0-indexing -----> 1-indexing;
+			j = response["alternatives"][j]["number"]; // go from position in list to alternative number
 			
 			document.getElementById("region" + j).style.background = "yellow";
 		}
@@ -162,15 +162,19 @@ function handleApproval(altNumber, isApproval) {
 	xhr.send(js);
 
 	// This will process results and update HTML as appropriate.
-	xhr.onloadend = function () {
+	xhr.onreadystatechange = function () {
 		console.log(xhr);
 		console.log(xhr.request);
 
 		if(xhr.readyState == XMLHttpRequest.DONE) {
 			console.log("XHR: " + xhr.responseText);
+			
+			if(JSON.parse(xhr.responseText)["statusCode"] == 409) {
+				alert("Sorry, this choice has already been completed.");
+			}
+			
+			window.location.reload();
 		}
-		
-		window.location.reload();
 	}
 }
 
@@ -204,15 +208,19 @@ function addFeedback(altNumber) {
 	xhr.send(js);
 	
 	// This will process results and update HTML as appropriate.
-	xhr.onloadend = function () {
+	xhr.onreadystatechange = function () {
 		console.log(xhr);
 		console.log(xhr.request);
-		
+
 		if(xhr.readyState == XMLHttpRequest.DONE) {
 			console.log("XHR: " + xhr.responseText);
+			
+			if(JSON.parse(xhr.responseText)["statusCode"] == 409) {
+				alert("Sorry, this choice has already been completed.");
+			}
+			
+			window.location.reload();
 		}
-		
-		window.location.reload();
 	}
 }
 
@@ -240,14 +248,18 @@ function selectAlternative(altNumber) {
 	xhr.send(js);
 	
 	// This will process results and update HTML as appropriate.
-	xhr.onloadend = function () {
+	xhr.onreadystatechange = function () {
 		console.log(xhr);
 		console.log(xhr.request);
-		
+
 		if(xhr.readyState == XMLHttpRequest.DONE) {
 			console.log("XHR: " + xhr.responseText);
+			
+			if(JSON.parse(xhr.responseText)["statusCode"] == 409) {
+				alert("Sorry, this choice has already been completed.");
+			}
+			
+			//window.location.reload();
 		}
-		
-		window.location.reload();
 	}
 }
