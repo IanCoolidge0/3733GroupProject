@@ -19,7 +19,9 @@ public class TestViewChoicesResponse {
 		approvals.add(new Approval());
 		List<Member> members = new ArrayList<Member>();
 		members.add(new Member());
-		ViewChoicesResponse response2 = new ViewChoicesResponse(choice,alternatives,approvals,members);
+		List<Feedback> feedbacks = new ArrayList<Feedback>();
+		feedbacks.add(new Feedback());
+		ViewChoicesResponse response2 = new ViewChoicesResponse(choice,alternatives,approvals,members,feedbacks);
 		Assert.assertEquals(response2.getChoice(),choice);
 		Assert.assertEquals(response2.getAlternatives(),alternatives);
 		Assert.assertEquals(response2.getApprovals(),approvals);
