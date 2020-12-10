@@ -131,17 +131,17 @@ public class MembersDAO {
         	
         	List<Member> membersWithName = getMembersWithName(member.getName());
         	if(membersWithName.size() > 0) {
-//        		if(!member.getHasPassword()) {
-//        			return false;
-//        		}
+        		if(!member.getHasPassword()) {
+        			return false;
+        		}
         	}
         	for(Member m : membersWithName) {
         		if(m.getChoiceId().equals(member.getChoiceId())) {
         			return false;
         		}
-//        		if(m.getHasPassword() && m.getPassword().equals(member.getPassword())) {
-//        			return false;
-//        		}
+        		if(m.getHasPassword() && m.getPassword().equals(member.getPassword())) {
+        			return false;
+        		}
         	}
         	
             PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id, choiceId, name,password,hasPassword) values(?,?,?,?,?);");
