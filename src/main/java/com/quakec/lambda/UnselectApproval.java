@@ -14,14 +14,14 @@ import com.quakec.model.Member;
 
 public class UnselectApproval implements RequestHandler<UnselectApprovalRequest, UnselectApprovalResponse> {
 
-    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
+//    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
     public UnselectApproval() {}
 
     // Test purpose only.
-    UnselectApproval(AmazonS3 s3) {
-        this.s3 = s3;
-    }
+//    UnselectApproval(AmazonS3 s3) {
+//        this.s3 = s3;
+//    }
 
     @Override
     public UnselectApprovalResponse handleRequest(UnselectApprovalRequest req, Context context) {

@@ -19,14 +19,14 @@ import com.quakec.model.Member;
 public class RegisterMember implements RequestHandler<RegisterMemberRequest,RegisterMemberResponse> {
 	LambdaLogger logger;
 
-    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
+//    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
     public RegisterMember() {}
 
     // Test purpose only.
-    RegisterMember(AmazonS3 s3) {
-        this.s3 = s3;
-    }
+//    RegisterMember(AmazonS3 s3) {
+//        this.s3 = s3;
+//    }
     
 
     

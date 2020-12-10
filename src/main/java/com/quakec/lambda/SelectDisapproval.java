@@ -13,14 +13,14 @@ import com.quakec.model.Member;
 
 public class SelectDisapproval implements RequestHandler<SelectApprovalRequest, SelectApprovalResponse> {
 
-    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
+//    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
     public SelectDisapproval() {}
 
     // Test purpose only.
-    SelectDisapproval(AmazonS3 s3) {
-        this.s3 = s3;
-    }
+//    SelectDisapproval(AmazonS3 s3) {
+//        this.s3 = s3;
+//    }
 
     @Override
     public SelectApprovalResponse handleRequest(SelectApprovalRequest req, Context context) {

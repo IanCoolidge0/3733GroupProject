@@ -17,14 +17,14 @@ import java.util.List;
 
 public class ProduceReport implements RequestHandler<ProduceReportRequest, ProduceReportResponse> {
 
-    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
+//    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
     public ProduceReport() {}
 
     // Test purpose only.
-    ProduceReport(AmazonS3 s3) {
-        this.s3 = s3;
-    }
+//    ProduceReport(AmazonS3 s3) {
+//        this.s3 = s3;
+//    }
 
     @Override
     public ProduceReportResponse handleRequest(ProduceReportRequest request, Context context) {

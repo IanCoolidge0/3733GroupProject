@@ -15,14 +15,14 @@ import com.quakec.model.Choice;
 
 public class CreateChoice implements RequestHandler<CreateChoiceRequest, CreateChoiceResponse> {
 
-    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
+//    private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
     public CreateChoice() {}
 
     // Test purpose only.
-    CreateChoice(AmazonS3 s3) {
-        this.s3 = s3;
-    }
+//    CreateChoice(AmazonS3 s3) {
+//        this.s3 = s3;
+//    }
 
     @Override
     public CreateChoiceResponse handleRequest(CreateChoiceRequest req, Context context) {

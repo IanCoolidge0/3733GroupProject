@@ -13,15 +13,15 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
@@ -34,14 +34,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Ian/.m2/repository/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar" sourcepath="C:/Users/Ian/.m2/repository/com/google/code/gson/gson/2.8.6/gson-2.8.6-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.google.code.gson"/>
-			<attribute name="maven.artifactId" value="gson"/>
-			<attribute name="maven.version" value="2.8.6"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="/Users/raymondcarter/Documents/WPI/3B-CS3733/gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
