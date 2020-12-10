@@ -34,7 +34,7 @@ public class FeedbackDAO {
     	String memberId = resultSet.getString("memberId");
     	String memberName = resultSet.getString("memberName");
     	String contents = resultSet.getString("contents");
-    	Timestamp timestamp  = resultSet.getTimestamp("datetime");
+    	Timestamp timestamp  = resultSet.getTimestamp("dateCreated");
     	Date date = (Date) new java.util.Date(timestamp.getTime());
 		return new Feedback(id,alternativeId,memberId,memberName,contents,date);
 	}
@@ -99,7 +99,7 @@ public class FeedbackDAO {
 	}
 	
 	
-	public List<Feedback> getAllFeedbacklFromMember(String memberId) throws Exception {
+	public List<Feedback> getAllFeedbackFromMember(String memberId) throws Exception {
 		List<Feedback> feedback = new ArrayList<Feedback>();
 		
 		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE memberId=?;");

@@ -102,7 +102,7 @@ public class MembersDAO {
     
     public List<Member> getMembersWithChoiceId(String id) throws Exception {
     	List<Member> members = new ArrayList<>();
-    	try {
+//    	try {
     		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE choiceId = ?;");
     		ps.setString(1, id);
     		ResultSet resultSet = ps.executeQuery();
@@ -115,13 +115,13 @@ public class MembersDAO {
     		resultSet.close();
     		ps.close();
     		return members;
-    	} catch (Exception e) {
-    		throw new Exception("Failed to get members of choiceId:" + e.getMessage());
-    	}
+//    	} catch (Exception e) {
+//    		throw new Exception("Failed to get members of choiceId:" + e.getMessage());
+//    	}
     }
     
     public boolean addMember(Member member) throws Exception {
-        try {
+//        try {
         	ChoicesDAO choiceDAO = new ChoicesDAO();
         	Choice c = choiceDAO.getChoice(member.getChoiceId());
         	int memberCountMax = c.getMemberCount();
@@ -153,15 +153,15 @@ public class MembersDAO {
             ps.execute();
             return true;
 
-        } catch (Exception e) {
-            throw new Exception("Failed add member: " + e.getMessage());
-        }
+//        } catch (Exception e) {
+//            throw new Exception("Failed add member: " + e.getMessage());
+//        }
     }
     
     public List<Member> getAllMembers() throws Exception {
         
         List<Member> allMembers = new ArrayList<>();
-        try {
+//        try {
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM " + tblName + ";";
             ResultSet resultSet = statement.executeQuery(query);
@@ -174,9 +174,9 @@ public class MembersDAO {
             statement.close();
             return allMembers;
 
-        } catch (Exception e) {
-            throw new Exception("Failed in getting members: " + e.getMessage());
-        }
+//        } catch (Exception e) {
+//            throw new Exception("Failed in getting members: " + e.getMessage());
+//        }
     }
     
 

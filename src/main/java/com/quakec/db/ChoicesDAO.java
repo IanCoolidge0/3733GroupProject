@@ -37,19 +37,18 @@ public class ChoicesDAO {
     	ps.setInt(4, choice.getMemberCount());
     	ps.setBoolean(5, choice.getHasChosenAlternative());
     	ps.setString(6, choice.getId());
-    	try {
-    		return ps.execute();
-    	} catch(Exception e) {
-    		ctx.getLogger().log("error was " + e.getMessage());
-    		return false;
-    	}
+//    	try {
+    		ps.execute();
+    		return true;
+//    	} catch(Exception e) {
+//    		ctx.getLogger().log("error was " + e.getMessage());
+//    		return false;
+//    	}
     }
     
-   
-
 	public Choice getChoice(String id) throws Exception {
 	        
-	        try {
+//	        try {
 	            Choice choice = null;
 	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE id=?;");
 	            ps.setString(1,  id);
@@ -63,15 +62,15 @@ public class ChoicesDAO {
 	            
 	            return choice;
 	
-	        } catch (Exception e) {
-	        	e.printStackTrace();
-	            throw new Exception("Failed in getting constant: " + e.getMessage());
-	        }
+//	        } catch (Exception e) {
+//	        	e.printStackTrace();
+//	            throw new Exception("Failed in getting constant: " + e.getMessage());
+//	        }
 	}
 
 	public List<Choice> getAllChoices() throws Exception {
 		ArrayList<Choice> choices = new ArrayList<>();
-		try {
+//		try {
 			Choice choice = null;
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName);
 			ResultSet resultSet = ps.executeQuery();
@@ -86,10 +85,10 @@ public class ChoicesDAO {
 
 			return choices;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new Exception("Failed in getting constant: " + e.getMessage());
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new Exception("Failed in getting constant: " + e.getMessage());
+//		}
 	}
 	
 	private Choice generateChoice(ResultSet resultSet) throws Exception {
@@ -103,4 +102,7 @@ public class ChoicesDAO {
         
         return new Choice (id, name, description, date, memberCount,hasChosenAlternative);
     }
+	
+
 }
+
