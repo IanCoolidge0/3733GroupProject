@@ -52,22 +52,16 @@ public class AlternativesDAO {
 	
 	
 	public boolean removeAlternative(String id) throws Exception {
-        try {
             PreparedStatement ps = conn.prepareStatement("DELETE FROM " + tblName + " WHERE id = ?;");
             ps.setString(1, id);
             int numAffected = ps.executeUpdate();
             ps.close();
             
             return (numAffected == 1);
-
-        } catch (Exception e) {
-            throw new Exception("Failed to remove alternative: " + e.getMessage());
-        }
     }
 	
 	public List<Alternative> getAlternativesWithChoiceId(String id) throws Exception {
     	List<Alternative> members = new ArrayList<>();
-    	try {
     		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE choiceId = ?;");
     		ps.setString(1, id);
     		ResultSet resultSet = ps.executeQuery();
@@ -80,9 +74,6 @@ public class AlternativesDAO {
     		resultSet.close();
     		ps.close();
     		return members;
-    	} catch (Exception e) {
-    		throw new Exception("Failed to get alternatives of choiceId:" + e.getMessage());
-    	}
     }
 	
 	private Alternative generateAlternative(ResultSet resultSet) throws SQLException {

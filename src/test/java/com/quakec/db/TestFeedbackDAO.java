@@ -55,6 +55,7 @@ public class TestFeedbackDAO {
 		fD.updateFeedback(f, "new comment");
 		Assert.assertEquals(fD.getFeedback(addMember.getId(),alt1.getId()).getContents(),"new comment");
 		
+		
 	}
 
 }

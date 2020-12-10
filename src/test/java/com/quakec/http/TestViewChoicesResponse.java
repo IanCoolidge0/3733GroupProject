@@ -28,6 +28,7 @@ public class TestViewChoicesResponse {
 		Assert.assertEquals(response2.getAlternatives(),alternatives);
 		Assert.assertEquals(response2.getApprovals(),approvals);
 		Assert.assertEquals(response2.getMembers(),members);
+		Assert.assertEquals(response2.getFeedbacks().size(),1);
 		Assert.assertEquals(response.toString(),"ErrorResult(400, err=failed)");
 		Assert.assertEquals(response2.toString(),"It worked!");
 		
