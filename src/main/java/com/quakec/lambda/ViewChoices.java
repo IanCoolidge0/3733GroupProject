@@ -4,20 +4,19 @@ import java.util.List;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.lambda.runtime.events.S3Event;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
 import com.quakec.db.AlternativesDAO;
 import com.quakec.db.ApprovalDAO;
 import com.quakec.db.ChoicesDAO;
+import com.quakec.db.FeedbackDAO;
 import com.quakec.db.MembersDAO;
 import com.quakec.http.ViewChoicesRequest;
 import com.quakec.http.ViewChoicesResponse;
 import com.quakec.model.Alternative;
 import com.quakec.model.Approval;
 import com.quakec.model.Choice;
+import com.quakec.model.Feedback;
 import com.quakec.model.Member;
 
 public class ViewChoices implements RequestHandler<ViewChoicesRequest, ViewChoicesResponse> {
@@ -42,12 +41,14 @@ public class ViewChoices implements RequestHandler<ViewChoicesRequest, ViewChoic
         	MembersDAO membersDAO = new MembersDAO();
         	AlternativesDAO alternativesDAO = new AlternativesDAO();
         	ApprovalDAO approvalDAO = new ApprovalDAO();
+        	FeedbackDAO feedbackDAO = new FeedbackDAO();
         	Choice choice = choicesDAO.getChoice(choiceId);
         	
         	List<Member> members = membersDAO.getMembersWithChoiceId(choiceId);
         	List<Alternative> alternatives = alternativesDAO.getAlternativesWithChoiceId(choiceId);
         	List<Approval> approvals = approvalDAO.getAllApprovalOnChoice(choiceId);
-        	response = new ViewChoicesResponse(choice,alternatives,approvals,members);
+        	List<Feedback> feedbacks = feedbackDAO.getAllFeedbackOnChoice(choiceId);
+        	response = new ViewChoicesResponse(choice,alternatives,approvals,members,feedbacks);
         	
 //        	response = new ViewChoicesResponse()
         } catch (Exception e) {

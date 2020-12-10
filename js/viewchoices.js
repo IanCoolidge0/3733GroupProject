@@ -36,6 +36,7 @@ function handlePageLoad() {
 			}
 		}
 		
+		// begin approval logic
 		var allApprovals = [];
 		for(j = 1; j < size + 1; j++) allApprovals[j] = [];
 		var allDisapprovals = [];
@@ -63,6 +64,10 @@ function handlePageLoad() {
 					pTag.innerHTML += allApprovals[j][i] + ", ";
 				}
 				pTag.innerHTML += allApprovals[j][allApprovals[j].length - 1];
+				
+				if(allDisapprovals[j].length > 0) {
+					pTag.innerHTML += ", ";
+				}
 			}
 			
 			if(allDisapprovals[j].length > 0) {
@@ -74,6 +79,30 @@ function handlePageLoad() {
 			}
 		}
 		
+		// begin feedback logic
+		var allFeedbacks = [];
+		for(j = 1; j < size + 1; j++) allFeedbacks[j] = [];
+		
+		var feedSize = response["feedbacks"].length;
+		for(i = 0; i < feedSize; i++) {
+			for(j = 0; j < size; j++) {
+				if(response["feedbacks"][i]["alternativeId"] === response["alternatives"][j]["id"]) {
+					allFeedbacks[response["alternatives"][j]["number"]].push(
+						{ n: response["feedbacks"][i]["memberName"], 
+						  f: response["feedbacks"][i]["contents"]});
+				}
+			}
+		}
+		
+		for(j = 1; j < size + 1; j++) {
+			var pTag = document.getElementById("alt" + j + "feed");
+			
+			for(i = 0; i < allFeedbacks[j].length; i++) {
+				pTag.innerHTML += allFeedbacks[j][i].n + ": " + allFeedbacks[j][i].f;
+				pTag.innerHTML += "<br />";
+			}
+		}
+		
 		// make extra alternatives invisible
 		for(j = size + 1; j <= 5; j++) {
 			console.log("here for j = " + j);
@@ -81,6 +110,8 @@ function handlePageLoad() {
 			document.getElementById("app" + j).style.display = "none";
 			document.getElementById("dis" + j).style.display = "none";
 			document.getElementById("alt" + j + "app").style.display = "none";
+			document.getElementById("feed" + j).style.display = "none";
+			document.getElementById("alt" + j + "feed").style.display = "none";
 		}
 		
 		window.lastViewResponse = response;
@@ -117,6 +148,48 @@ function handleApproval(altNumber, isApproval) {
 		console.log(xhr);
 		console.log(xhr.request);
 
+		if(xhr.readyState == XMLHttpRequest.DONE) {
+			console.log("XHR: " + xhr.responseText);
+		}
+		
+		window.location.reload();
+	}
+}
+
+function addFeedback(altNumber) {
+	var data = {};
+	data["memberId"] = window.myMemberId;
+	data["name"] = "";
+	var i;
+	var response = window.lastViewResponse;
+	for(i = 0; i < response["alternatives"].length; i++) {
+		if(response["alternatives"][i]["number"] === altNumber) {
+			data["alternativeId"] = response["alternatives"][i]["id"];
+			break;
+		}
+	}
+	
+	var feedback = prompt("Enter your feedback:", "");
+	if(feedback == null || feedback == "") {
+		return; // they cancalled the prompt
+	} else {
+		data["feedback"] = feedback;
+	}
+	
+	var js = JSON.stringify(data);
+	console.log("feedback data:");
+	console.log(js);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", addfeedback_url, true);
+	
+	xhr.send(js);
+	
+	// This will process results and update HTML as appropriate.
+	xhr.onloadend = function () {
+		console.log(xhr);
+		console.log(xhr.request);
+		
 		if(xhr.readyState == XMLHttpRequest.DONE) {
 			console.log("XHR: " + xhr.responseText);
 		}
