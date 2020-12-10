@@ -114,6 +114,20 @@ function handlePageLoad() {
 			document.getElementById("alt" + j + "feed").style.display = "none";
 		}
 		
+		// finally, highlight a section in yellow IF it is the selected alternative of a completed choice
+		var selectedAlternative = response["choice"]["chosenAlternative"];
+		
+		if(selectedAlternative != "") { // the choice is complete
+			for(j = 0; j < size; j++) {
+				// loop through alternatives, setting j to the selected id. precondition: alternative exists
+				if(response["alternatives"][j]["id"] === selectedAlternative) break;
+			}
+			
+			j++; // 0-indexing -----> 1-indexing;
+			
+			document.getElementById("region" + j).style.background = "yellow";
+		}
+		
 		window.lastViewResponse = response;
 	}
 }
