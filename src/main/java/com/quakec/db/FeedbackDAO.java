@@ -72,7 +72,7 @@ public class FeedbackDAO {
 	}
 	
 	public boolean addFeedback(Feedback feedback) throws Exception {
-		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id,alternativeId,memberId, memberName,contents,datetime) values(?,?,?,?);");
+		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id,alternativeId,memberId, memberName,contents,dateCreated) values(?,?,?,?,?,?);");
 		
 		ps.setString(1, feedback.getId());
 		ps.setString(2,feedback.getAlternativeId());
@@ -138,9 +138,20 @@ public class FeedbackDAO {
 		return feedback;
 	}
 
-	public Feedback getFeedback(String memberId, String alternativeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Feedback getFeedback(String memberId, String alternativeId) throws Exception {
+		Feedback feedback = null;
+		
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE alternativeId=? AND memberId=?");
+		ps.setString(1, alternativeId);
+		ps.setString(2, memberId);
+		
+		ResultSet resultSet = ps.executeQuery();
+		
+		while(resultSet.next()) feedback = generateFeedback(resultSet);
+		resultSet.close();
+		ps.close();
+		
+		return feedback;
 	}
 
 	
