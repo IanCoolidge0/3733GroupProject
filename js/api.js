@@ -10,4 +10,5 @@ var adminlandingpage_url = base_url + "producereport";     // POST
 var viewchoices_url = base_url + "viewchoice"; 			   // POST
 var selectapproval_url = base_url + "selectapproval"; 	   // POST
 var selectdisapproval_url = base_url + "selectdisapproval" // POST
-var addfeedback_url = base_url + "addfeedback"			   // POST
+var addfeedback_url = base_url + "addfeedback";			   // POST
+var completechoice_url = base_url + "completechoice";      // POST

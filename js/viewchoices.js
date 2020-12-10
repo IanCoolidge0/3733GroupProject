@@ -197,3 +197,39 @@ function addFeedback(altNumber) {
 		window.location.reload();
 	}
 }
+
+function selectAlternative(altNumber) {
+	var data = {};
+	data["choiceId"] = window.myChoiceId;
+	var i;
+	var response = window.lastViewResponse;
+	for(i = 0; i < response["alternatives"].length; i++) {
+		if(response["alternatives"][i]["number"] === altNumber) {
+			data["alternativeId"] = response["alternatives"][i]["id"];
+			break;
+		}
+	}
+	
+	if(!confirm("Are you sure you want to choose alternative " + i + "?")) return;
+	
+	var js = JSON.stringify(data);
+	console.log("completechoice data:");
+	console.log(js);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", completechoice_url, true);
+	
+	xhr.send(js);
+	
+	// This will process results and update HTML as appropriate.
+	xhr.onloadend = function () {
+		console.log(xhr);
+		console.log(xhr.request);
+		
+		if(xhr.readyState == XMLHttpRequest.DONE) {
+			console.log("XHR: " + xhr.responseText);
+		}
+		
+		window.location.reload();
+	}
+}

@@ -29,13 +29,13 @@ public class ChoicesDAO {
     }
     
     public boolean createChoice(Choice choice, Context ctx) throws SQLException {
-    	PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,description,datetime,memberCount,hasChosenAlternative,id) values(?,?,?,?,?,?);");
+    	PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,description,datetime,memberCount,chosenAlternative,id) values(?,?,?,?,?,?);");
     	
     	ps.setString(1, choice.getName());
     	ps.setString(2, choice.getDescription());
     	ps.setTimestamp(3, new Timestamp(choice.getDatetime().getTime()));
     	ps.setInt(4, choice.getMemberCount());
-    	ps.setBoolean(5, choice.getHasChosenAlternative());
+    	ps.setString(5, choice.getChosenAlternative());
     	ps.setString(6, choice.getId());
 //    	try {
     		ps.execute();
@@ -97,11 +97,29 @@ public class ChoicesDAO {
         Timestamp timestamp  = resultSet.getTimestamp("datetime");
         Date date = new Date(timestamp.getTime());
         int memberCount  = resultSet.getInt("memberCount");
-        boolean hasChosenAlternative  = resultSet.getBoolean("hasChosenAlternative");
+        String chosenAlternative  = resultSet.getString("chosenAlternative");
         String id  = resultSet.getString("id");
         
-        return new Choice (id, name, description, date, memberCount,hasChosenAlternative);
+        return new Choice (id, name, description, date, memberCount,chosenAlternative);
     }
+
+	public boolean completeChoice(String choiceId, String alternativeId) throws Exception {
+		AlternativesDAO alternativesDAO = new AlternativesDAO();
+		
+		if(alternativesDAO.getAlternative(alternativeId).choiceId == choiceId) { // is the alternative actually part of the choice??
+			PreparedStatement ps = conn.prepareStatement("UPDATE " + tblName + " SET chosenAlternative=? WHERE id=?;");
+			ps.setString(1, alternativeId);
+			ps.setString(2, choiceId);
+			
+			boolean result = ps.execute();
+			ps.close();
+			
+			return result;
+		}
+		
+		// it's not, return false. something went wrong
+		return false;
+	}
 	
 
 }

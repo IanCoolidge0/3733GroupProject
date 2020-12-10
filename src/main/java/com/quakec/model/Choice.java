@@ -10,7 +10,7 @@ public class Choice {
 	public String description;
 	public Date datetime;
 	public int memberCount;
-	public boolean hasChosenAlternative;
+	public String chosenAlternative;
 	
 	public Choice() {
 		
@@ -22,16 +22,16 @@ public class Choice {
 		this.description = description;
 		this.memberCount = memberCount;
 		this.datetime = new Date();
-		this.hasChosenAlternative = false; 
+		this.chosenAlternative = ""; 
 	}
 	
-	public Choice(String id, String name, String description, Date datetime, int memberCount, boolean hasChosenAlternative) {
+	public Choice(String id, String name, String description, Date datetime, int memberCount, String chosenAlternative) {
 		this.id = id; 
 		this.name = name;
 		this.description = description;
 		this.datetime = datetime;
 		this.memberCount = memberCount;
-		this.hasChosenAlternative = hasChosenAlternative;	
+		this.chosenAlternative = chosenAlternative;	
 	}
 	
 	public String getId() {return id;}
@@ -44,14 +44,14 @@ public class Choice {
 	
 	public int getMemberCount() {return memberCount;}
 	
-	public boolean getHasChosenAlternative() {return hasChosenAlternative;}
+	public String getChosenAlternative() {return chosenAlternative;}
 	
 	public void setId(String id) {this.id = id;}
 	public void setName(String name) {this.name = name;}
 	public void setDescription(String description) {this.description = description;}
 	public void setDatetime(Date datetime) {this.datetime = datetime;}
 	public void setMemberCount(int memberCount) {this.memberCount = memberCount;}
-	public void setHasChosenAlternative(boolean hasChosenAlternative) {this.hasChosenAlternative= hasChosenAlternative;}	
+	public void setChosenAlternative(String chosenAlternative) {this.chosenAlternative= chosenAlternative;}	
 
 }
 
