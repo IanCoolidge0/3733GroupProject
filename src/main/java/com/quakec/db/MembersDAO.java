@@ -35,7 +35,7 @@ public class MembersDAO {
     }
 
     public Member getMember(String id) throws Exception {
-    	try {
+
     		Member member = null;
     		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE id=?;");
     		ps.setString(1, id);
@@ -48,14 +48,10 @@ public class MembersDAO {
     		resultSet.close();
     		ps.close();
     		return member;
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    		throw new Exception("Failed in getting member: " + e.getMessage());
-    	}
+ 
     }
     
     public boolean deleteMember(Member member) throws Exception {
-        try {
             PreparedStatement ps = conn.prepareStatement("DELETE FROM " + tblName + " WHERE id = ?;");
             ps.setString(1, member.getId());
             int numAffected = ps.executeUpdate();
@@ -63,14 +59,10 @@ public class MembersDAO {
             
             return (numAffected == 1);
 
-        } catch (Exception e) {
-            throw new Exception("Failed to insert constant: " + e.getMessage());
-        }
     }
     
     public List<Member> getMembersWithName(String name) throws Exception {
     	List<Member> members = new ArrayList<>();
-    	try {
     		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name = ?;");
     		ps.setString(1, name);
     		ResultSet resultSet = ps.executeQuery();
@@ -83,9 +75,6 @@ public class MembersDAO {
     		resultSet.close();
     		ps.close();
     		return members;
-    	} catch (Exception e) {
-    		throw new Exception("Failed to get members of same name:" + e.getMessage());
-    	}
     }
     
 

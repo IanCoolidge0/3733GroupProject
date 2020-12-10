@@ -42,6 +42,8 @@ public class TestAlternativesDAO {
 		Assert.assertEquals(2,altD.getAlternativesWithChoiceId(id1).size());
 		altD.removeAlternative(alt2.getId());
 		Assert.assertEquals(1,altD.getAlternativesWithChoiceId(id1).size());
+		cD.completeChoice(id1, alt1.getId());
+		Assert.assertEquals(cD.getChoice(id1).getChosenAlternative(), alt1.getId());
 	}
 
 }
