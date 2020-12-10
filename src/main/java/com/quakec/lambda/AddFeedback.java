@@ -35,6 +35,13 @@ public class AddFeedback implements RequestHandler<AddFeedbackRequest, AddFeedba
         	
         	if(member != null) {
         		Feedback existingFeedback = feedbackDAO.getFeedback(req.getMemberId(), req.getAlternativeId());
+        		
+        		if(existingFeedback != null) {
+        			feedbackDAO.updateFeedback(existingFeedback, req.getFeedback());
+        		} else {
+        			Feedback feedback = new Feedback(req.getAlternativeId(), req.getMemberId(), req.getName(), req.getFeedback());
+        			feedbackDAO.addFeedback(feedback);
+        		}
         	}
         	
         	response = new AddFeedbackResponse(200);

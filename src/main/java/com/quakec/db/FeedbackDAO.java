@@ -63,7 +63,13 @@ public class FeedbackDAO {
 		return ps.execute();
 	}
 	
-	
+	public boolean updateFeedback(Feedback feedback, String newFeedback) throws Exception {
+		PreparedStatement ps = conn.prepareStatement("UPDATE " + tblName + " SET contents=? WHERE id=?;");
+		ps.setString(1, newFeedback);
+		ps.setString(2, feedback.getId());
+		
+		return ps.execute();
+	}
 	
 	public boolean addFeedback(Feedback feedback) throws Exception {
 		PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tblName + " (id,alternativeId,memberId, memberName,contents,datetime) values(?,?,?,?);");
