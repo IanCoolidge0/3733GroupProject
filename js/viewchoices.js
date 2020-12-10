@@ -20,8 +20,8 @@ function handlePageLoad() {
 			console.log("XHR: " + xhr.responseText);
 		}
 		var response = JSON.parse(xhr.responseText);
-		document.getElementById("choiceName").innerHTML = response["choice"]["name"];
-		document.getElementById("choiceDesc").innerHTML = response["choice"]["description"];
+		document.getElementById("choiceName").innerHTML = "<p style="text-align:center;">" + response["choice"]["name"] + "</p>";
+		document.getElementById("choiceDesc").innerHTML = "<p style="text-align:center;">" + response["choice"]["description"] + "</p>";
 		
 		var i;
 		var j;
