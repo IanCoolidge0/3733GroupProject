@@ -31,38 +31,28 @@ public class CreateChoiceTest {
 		Assert.assertEquals(200, response.statusCode);
 	}
 	
-	void testFailInput(String incoming, String outgoing) throws IOException {
-		CreateChoice createChoice = new CreateChoice();
-		CreateChoiceRequest req = new Gson().fromJson(incoming, CreateChoiceRequest.class);
-
-		CreateChoiceResponse response = createChoice.handleRequest(req, createContext("compute"));
-
-		Assert.assertTrue(response.statusCode != 200);
-	}
+//	void testFailInput(String incoming, String outgoing) throws IOException {
+//		CreateChoice createChoice = new CreateChoice();
+//		CreateChoiceRequest req = new Gson().fromJson(incoming, CreateChoiceRequest.class);
+//
+//		CreateChoiceResponse response = createChoice.handleRequest(req, createContext("compute"));
+//
+//		Assert.assertTrue(response.statusCode != 200);
+//	}
 	
-	@Test
-	public void testCreateChoiceSuccess() {
-		String SAMPLE_INPUT_STRING = "{\"title\": \"Project\", \"description\": \"project description\", \"alternatives\": [\"Project 1\",\"Project 2\",\"Project 3\"],\"id\": \"21111111-1121-1111-1111-111111121111\",\"memberCount\": \"2\"}";
-		String RESULT = "It worked!";
-
-		try {
-			testInput(SAMPLE_INPUT_STRING, RESULT);
-		} catch (IOException ioe) {
-			Assert.fail("Invalid:" + ioe.getMessage());
-		}
-	}
+//	@Test
+//	public void testCreateChoiceSuccess() {
+//		String SAMPLE_INPUT_STRING = "{\"title\": \"NewProject\", \"description\": \"project description\", \"alternatives\": [\"Project 1\",\"Project 2\",\"Project 3\"],\"id\": \"22222222-1111-1111-1111-111111111111\",\"memberCount\": \"2\"}";
+//		String RESULT = "";
+//
+//		try {
+//			testInput(SAMPLE_INPUT_STRING, RESULT);
+//		} catch (IOException ioe) {
+//			Assert.fail("Invalid:" + ioe.getMessage());
+//		}
+//	}
 	
-	@Test
-	public void testCreateChoiceFailInput() {
-		String SAMPLE_INPUT_STRING = "{\"title\": \"Project\", \"description\": \"project description\", \"alternatives\": [\"Project 1\",\"Project 2\",\"Project 3\"],\"id\": \"21111111-1121-1111-1111-111111121111\",\"memberCount\": \"hie\"}";
-		String RESULT = "";
 
-		try {
-			testFailInput(SAMPLE_INPUT_STRING, RESULT);
-		} catch (IOException ioe) {
-			Assert.fail("Invalid:" + ioe.getMessage());
-		}
-	}
 	
 
 }

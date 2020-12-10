@@ -51,7 +51,6 @@ public class CreateChoiceRequest {
 
 	public String toString() {
 		String s = "CreateChoice(" + title + "," + description + "," + memberCount + ",";
-		if(alternatives == null) return s;
 		for(int i = 0; i < alternatives.size() - 1; i++) s += alternatives.get(i) + ",";
 		s += alternatives.get(alternatives.size() - 1) + ")";
 		s += ", " + id;

@@ -17,6 +17,7 @@ public class ProduceReportResponse {
     public ProduceReportResponse (List<Choice> choices) {
         this.statusCode = 200;
         this.choices = choices;
+        this.errMessage = "";
     }
 
     public List<Choice> getChoices() {
