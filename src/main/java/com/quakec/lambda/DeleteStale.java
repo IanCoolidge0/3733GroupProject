@@ -7,8 +7,16 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.quakec.db.ChoicesDAO;
+import com.quakec.http.DeleteStaleRequest;
+import com.quakec.http.DeleteStaleResponse;
+import com.quakec.http.ProduceReportRequest;
+import com.quakec.http.ProduceReportResponse;
+import com.quakec.model.Choice;
 
-public class DeleteStale implements RequestHandler<S3Event, String> {
+import java.util.List;
+
+public class DeleteStale implements RequestHandler<DeleteStaleRequest, DeleteStaleResponse> {
 	private AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
 
     public DeleteStale() {}
@@ -19,23 +27,27 @@ public class DeleteStale implements RequestHandler<S3Event, String> {
     }
 
     @Override
-    public String handleRequest(S3Event event, Context context) {
-        context.getLogger().log("Received event: " + event);
-
+    public DeleteStaleResponse handleRequest(DeleteStaleRequest request, Context context) {
         // Get the object from the event and show its content type
-        String bucket = event.getRecords().get(0).getS3().getBucket().getName();
-        String key = event.getRecords().get(0).getS3().getObject().getKey();
+        DeleteStaleResponse response;
+
         try {
-            S3Object response = s3.getObject(new GetObjectRequest(bucket, key));
-            String contentType = response.getObjectMetadata().getContentType();
-            context.getLogger().log("CONTENT TYPE: " + contentType);
-            return contentType;
+            if (deleteStale(request.getTime())) {
+                response = new DeleteStaleResponse();
+            } else {
+                response = new DeleteStaleResponse(403, "Delete Stale Failed");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            context.getLogger().log(String.format(
-                "Error getting object %s from bucket %s. Make sure they exist and"
-                + " your bucket is in the same region as this function.", key, bucket));
-            throw e;
+            response = new DeleteStaleResponse(403, e.getMessage());
         }
+
+        return response;
+    }
+
+    private boolean deleteStale(int timeInMillis) throws Exception {
+        ChoicesDAO choiceDAO = new ChoicesDAO();
+
+        return choiceDAO.deleteStaleChoices(timeInMillis);
     }
 }
