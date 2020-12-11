@@ -22,7 +22,8 @@ function handlePageLoad() {
 		var response = JSON.parse(xhr.responseText);
 		document.getElementById("choiceName").innerHTML = '<p style="text-align:center;">' + response["choice"]["name"] + "</p>";
 		document.getElementById("choiceDesc").innerHTML = '<p style="text-align:center;">' + response["choice"]["description"] + "</p>";
-		
+		document.getElementById("choiceIdLabel").innerHTML = "Share this Choice ID: " + window.myChoiceId;
+		document.getElementById("memberIdLabel").innerHTML = "My member ID: " + window.myMemberId;
 		var i;
 		var j;
 		
