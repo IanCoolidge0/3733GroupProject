@@ -21,7 +21,6 @@
     </section>
     <br />
     <section id="content">
-      <!--<form name="generateReportForm" method="post">-->
         <h1>Administrator</h1>
           <button class="button button1" onClick="handleGenerateReportClick(this)">Generate Report</button>
           <br />
@@ -30,12 +29,13 @@
         <br>
         </p>
         </div>
-      <!--</form>-->
-      <label>Delete Choices:</label>
-      <input name="numdays" type="text" placeholder="# days old"/>
-      <br />
-      <br />
-      <button class="button button2">Delete</button>
+      <form name="deleteChoicesForm" method="post">
+        <label>Delete Choices:</label>
+        <input name="numdays" type="text" placeholder="# days old"/>
+        <br />
+        <br />
+        <button class="button button2" onclick="handleDeleteStaleClick(this)">Delete</button>
+      </form>
     </section>
   </body>
 </html>
