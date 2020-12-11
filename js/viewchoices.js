@@ -64,7 +64,7 @@ function handlePageLoad() {
 				for(i = 0; i < allApprovals[j].length - 1; i++) {
 					pTag.innerHTML += allApprovals[j][i] + ", ";
 				}
-				pTag.innerHTML += allApprovals[j][allApprovals[j].length - 1]+ " " + (allApprovals[j][allApprovals[j].length).toString();
+				pTag.innerHTML += allApprovals[j][allApprovals[j].length - 1]+ " " + allApprovals.length;
 				
 				if(allDisapprovals[j].length > 0) {
 					pTag.innerHTML += ", ";
@@ -76,7 +76,7 @@ function handlePageLoad() {
 				for(i = 0; i < allDisapprovals[j].length - 1; i++) {
 					pTag.innerHTML += allDisapprovals[j][i] + ", ";
 				}
-				pTag.innerHTML += allDisapprovals[j][allDisapprovals[j].length - 1]+ " " + (allDisapprovals[j][allDisapprovals[j].length).toString();
+				pTag.innerHTML += allDisapprovals[j][allDisapprovals[j].length - 1]+ " " + allDisapprovals.length;
 			}
 		}
 		
