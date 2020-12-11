@@ -14,7 +14,7 @@ function processListResponse(result) {
         var choiceId = choiceJson["id"];
         var date = choiceJson["datetime"]
         var formattedDate = new Date(date);
-        var completed = choiceJson["hasChosenAlternative"];
+        var completed = choiceJson["chosenAlternative"] != "";
 
         if (completed) {
             completed = "COMPLETED";
