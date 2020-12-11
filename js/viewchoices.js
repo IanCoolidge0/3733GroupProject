@@ -22,7 +22,8 @@ function handlePageLoad() {
 		var response = JSON.parse(xhr.responseText);
 		document.getElementById("choiceName").innerHTML = '<p style="text-align:center;">' + response["choice"]["name"] + "</p>";
 		document.getElementById("choiceDesc").innerHTML = '<p style="text-align:center;">' + response["choice"]["description"] + "</p>";
-		
+		document.getElementById("choiceIdLabel").innerHTML = "Share this Choice ID: " + window.myChoiceId;
+		document.getElementById("memberIdLabel").innerHTML = "My member ID: " + window.myMemberId;
 		var i;
 		var j;
 		
@@ -63,7 +64,7 @@ function handlePageLoad() {
 				for(i = 0; i < allApprovals[j].length - 1; i++) {
 					pTag.innerHTML += allApprovals[j][i] + ", ";
 				}
-				pTag.innerHTML += allApprovals[j][allApprovals[j].length - 1];
+				pTag.innerHTML += allApprovals[j][allApprovals[j].length - 1]+ " " + (allApprovals[j][allApprovals[j].length).toString();
 				
 				if(allDisapprovals[j].length > 0) {
 					pTag.innerHTML += ", ";
@@ -75,7 +76,7 @@ function handlePageLoad() {
 				for(i = 0; i < allDisapprovals[j].length - 1; i++) {
 					pTag.innerHTML += allDisapprovals[j][i] + ", ";
 				}
-				pTag.innerHTML += allDisapprovals[j][allDisapprovals[j].length - 1];
+				pTag.innerHTML += allDisapprovals[j][allDisapprovals[j].length - 1]+ " " + (allDisapprovals[j][allDisapprovals[j].length).toString();
 			}
 		}
 		
