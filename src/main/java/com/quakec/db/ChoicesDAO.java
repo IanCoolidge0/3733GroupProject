@@ -78,6 +78,22 @@ public class ChoicesDAO {
 
 	}
 	
+	public boolean deleteStaleChoices(int timeInMillis) throws Exception {
+    		String query = "DELETE FROM" + tblName + "date < DATEADD(ms," + timeInMillis + ", GETDATE())";
+    		try {
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+
+			// execute the preparedstatement
+			preparedStmt.execute();
+
+			conn.close();
+			return true;
+		} catch (Exception e) {
+    			e.printStackTrace();
+    			throw new Exception("Failed in deleting stale: " + e.getMessage());
+		}
+	}
+	
 	private Choice generateChoice(ResultSet resultSet) throws Exception {
         String name  = resultSet.getString("name");
         String description  = resultSet.getString("description");
