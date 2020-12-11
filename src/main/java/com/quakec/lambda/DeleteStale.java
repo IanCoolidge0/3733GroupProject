@@ -32,7 +32,7 @@ public class DeleteStale implements RequestHandler<DeleteStaleRequest, DeleteSta
         DeleteStaleResponse response;
 
         try {
-            if (deleteStale(request.getTime())) {
+            if (deleteStale(request.getTimeInMills())) {
                 response = new DeleteStaleResponse();
             } else {
                 response = new DeleteStaleResponse(403, "Delete Stale Failed");
