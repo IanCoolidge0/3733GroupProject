@@ -40,7 +40,11 @@ public class SelectApproval implements RequestHandler<SelectApprovalRequest, Sel
 	        		Approval existingApproval = approvalDAO.tryGetExistingApproval(req.getAlternativeId(), req.getMemberId());
 	        		
 	        		if(existingApproval != null) {
-	        			approvalDAO.updateApproval(existingApproval, true);
+	        			if(existingApproval.getIsApproval()) {
+	        				approvalDAO.deleteApproval(existingApproval.getId());
+	        			} else {
+	        				approvalDAO.updateApproval(existingApproval, true);
+	        			}
 	        		} else {
 		        		Approval approval = new Approval(req.getAlternativeId(), req.getMemberId(), member.getName(), true);
 		        		approvalDAO.addApproval(approval);

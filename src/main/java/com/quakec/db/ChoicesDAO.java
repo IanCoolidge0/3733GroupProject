@@ -79,14 +79,14 @@ public class ChoicesDAO {
 	}
 
 	public boolean deleteStaleChoices(int timeInMillis) throws Exception {
-		String query = "DELETE FROM " + tblName + " WHERE date < DATEADD(ms, -?, GETDATE())";
+		String query = "DELETE FROM " + tblName + " WHERE datetime < (NOW() - INTERVAL ? SECOND)";
 		try {
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
-			preparedStmt.setInt(1, timeInMillis);
+			preparedStmt.setInt(1, timeInMillis / 1000);
 			// execute the preparedstatement
 			preparedStmt.execute();
 
-			conn.close();
+			preparedStmt.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
