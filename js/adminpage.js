@@ -46,3 +46,21 @@ function handleGenerateReportClick(e) {
     xhttp.open("GET", adminlandingpage_url, true);
     xhttp.send();
 }
+
+function handleDeleteStaleClick(e) {
+
+    var numdays = parseFloat(document.getElementById("numdays").value) * 86400000;
+    var data = {};
+    data["timeInMills"] = numdays;
+    var js = JSON.stringify(data);
+    var xhttp = new XMLHttpRequest();
+    console.log("JS: " + js);
+    xhttp.onloadend = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("ready");
+        }
+    };
+    xhttp.open("POST", deletestale_url, true);
+    xhttp.send(js);
+
+}
